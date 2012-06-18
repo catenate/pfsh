@@ -1,9 +1,11 @@
 /dis/Aide
 Dump /git/pfsh/dump
+du -n | grep Aide
 ls|mc
+osd evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
 osd git add test
-osd git commit -a -m 'add tests for bash functions map, fold, and filter; and heredoc map'
-osd git diff 575e621 6497979
+osd git commit -a -m 'du, evince, and diff commands in Aide; small changes to README text and ref'
+osd git diff 72c2542
 osd git log --graph --oneline --all
 osd git push origin master
 osd git status

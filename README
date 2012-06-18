@@ -5,9 +5,9 @@ for loops into their own reusable, parameterized functions or files.
 Then, apply the function or call the script file over a set of data
 with functional programming primitives² such as map, reduce or folds,
 filter, et cetera.  This project provides implementations of these
-primitives, as shell scripts and functions, in various OS-shell
-programming languages.
+primitives, as scripts and functions, for various shells.
  ¹ Lack of types—or, everything is one type—is another, but that
 hasn't seemed to much hurt Lisps.
- ² See: Spolsky, J.  20060801.  Can your programming language do this?
-Joel on software.  http://www.joelonsoftware.com/items/2006/08/01.html
+ ² Introductory justification with examples: Spolsky, J.  20060801.
+Can your programming language do this?  Joel on software.
+http://www.joelonsoftware.com/items/2006/08/01.html
