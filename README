@@ -9,6 +9,5 @@ primitives, as shell scripts and functions, in various OS-shell
 programming languages.
  ¹ Lack of types—or, everything is one type—is another, but that
 hasn't seemed to much hurt Lisps.
- ⁲ See: Spolsky, J. 20060801.  Can your programming language do this?
+ ² See: Spolsky, J. 20060801.  Can your programming language do this?
 Joel on software. http://www.joelonsoftware.com/items/2006/08/01.html
-
