@@ -1,0 +1,8 @@
+cat > map <<ENDMAP
+f=\$1
+shift
+for x in \$@; do
+	\$f \$x
+done
+ENDMAP
+chmod +x map

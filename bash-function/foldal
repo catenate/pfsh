@@ -1,0 +1,11 @@
+# iterative left fold using accumulator
+function foldal {
+	f=$1
+	shift
+	v=$1
+	shift
+	for x in $@; do
+		v=$($f $v $x)
+	done
+	echo $v
+}
