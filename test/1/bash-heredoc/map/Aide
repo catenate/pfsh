@@ -1,0 +1,5 @@
+chmod +x testadd1
+ls|mc
+osd bash testadd1
+rm map add1
+|sort|uniq

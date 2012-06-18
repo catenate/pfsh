@@ -1,0 +1,4 @@
+chmod +x add1
+ls|mc
+osd bash add1
+|sort|uniq

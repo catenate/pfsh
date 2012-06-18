@@ -1,8 +1,8 @@
 /dis/Aide
 Dump /git/pfsh/dump
 ls|mc
-osd git add Aide README dump
-osd git commit -a -m 'add git commands to Aide, fix README footnote number'
+osd git add test
+osd git commit -a -m 'add tests for bash functions map, fold, and filter; and heredoc map'
 osd git diff 575e621 6497979
 osd git log --graph --oneline --all
 osd git push origin master

@@ -1,0 +1,10 @@
+. ../../../../bash-function/foldal
+
+function sum {
+	echo $(echo $1 $2 + p | dc)
+}
+
+series=$(seq 1 10)
+echo $series
+sum=$(foldal sum 0 $series)
+echo $sum

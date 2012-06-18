@@ -1,0 +1,5 @@
+chmod +x even
+ls|mc
+osd bash even
+osd man dc
+|sort|uniq

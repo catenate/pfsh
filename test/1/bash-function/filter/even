@@ -1,0 +1,10 @@
+. ../../../../bash-function/filter
+
+function even {
+	return $(echo $1 2 % p | dc)
+}
+
+series=$(seq 1 10)
+echo $series
+even=$(filter even $series)
+echo $even

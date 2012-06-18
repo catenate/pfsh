@@ -1,0 +1,4 @@
+chmod +x sum
+ls|mc
+osd bash sum
+|sort|uniq

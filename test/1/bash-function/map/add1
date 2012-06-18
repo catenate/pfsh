@@ -1,0 +1,11 @@
+. ../../../../bash-function/map
+
+function add1 {
+	echo $(echo $1 1 + p | dc)
+}
+
+series1=$(seq 1 10)
+echo $series1
+series2=$(map add1 $series1)
+echo $series2
+
