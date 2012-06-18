@@ -1,0 +1,9 @@
+/dis/Aide
+Dump /git/pfsh/dump
+ls|mc
+osd git add Aide README dump
+osd git status
+osd git commit -a -m 'add Aide README dump'
+osd git remote add origin git@github.com:catenate/pfsh.git
+osd git push -u origin master
+|sort|uniq
