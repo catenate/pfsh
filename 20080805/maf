@@ -1,0 +1,8 @@
+fsh=/tmp/f.$(basename $0).tmp.$$
+echo $1 > $fsh
+chmod +x $fsh
+shift
+for x in "$@"; do
+	$fsh $x
+done
+rm -f $fsh

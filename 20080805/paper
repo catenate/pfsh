@@ -13,17 +13,21 @@ order scripts to, and in, a small library of utility scripts.
 Contents
 
   paper:13	Contents
-  paper:29	Introduction
-  paper:54		Lambda calculus
-  paper:71	Predicate selects function to apply to value
-  paper:76		Cond—functional conditional
-  paper:90	Apply function to each member of list
-  paper:97		Lambda calculus
-  paper:115		Category theory
-  paper:129		Lisp
+  paper:33	Introduction
+  paper:58		Lambda calculus
+  paper:75	Predicate selects function to apply to value
+  paper:80		Cond—functional conditional
+  paper:94	Apply function to each member of list
+  paper:101		Lambda calculus
+  paper:119		Category theory
+  paper:133		Lisp
+  paper:169		Mas—serial
+  paper:180		Maf—anonymous functions
 
-  paper:78	EXTRACT cond
-  paper:152	EXTRACT jmapcar.el
+  paper:82	EXTRACT cond
+  paper:156	EXTRACT jmapcar.el
+  paper:173	EXTRACT mas
+  paper:184	EXTRACT maf
 
 
 Introduction
@@ -173,3 +177,24 @@ EXTRACT mas
 		$f $x
 	done
 
+	Maf—anonymous functions
+
+Use this version of map to supply pipelines as the first parameter.
+
+EXTRACT maf
+	fsh=/tmp/f.$(basename $0).tmp.$$
+	echo $1 > $fsh
+	chmod +x $fsh
+	shift
+	for x in "$@"; do
+		$fsh $x
+	done
+	rm -f $fsh
+
+For example, strip the final extensions from filenames.
+
+$ maf "echo \$1 | sed 's,\.[^.]\+$,,'" a.c b.c c.c d.c
+a
+b
+c
+d
