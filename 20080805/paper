@@ -1,13 +1,28 @@
 Parallel Functional Shell Programming
 Jason Catena
 5 August 2008
-
 Higher-order functions modularize, simplify, and parallelize programs.
 This paper presents, as literate programs, shell script variations of
 the higher-order functions compose, conditional, construct, filter,
 fold, map, unfold, and zip.  GNU Make implicitly parallelizes construct,
 map, and zip, for the most practical benefit.  We apply these higher-
 order scripts to, and in, a small library of utility scripts.
+
+
+Contents
+
+  paper:12	Contents
+  paper:28	Introduction
+  paper:53		Lambda calculus
+  paper:70	Predicate selects function to apply to value
+  paper:75		Cond—functional conditional
+  paper:89	Apply function to each member of list
+  paper:96		Lambda calculus
+  paper:114		Category theory
+  paper:128		Lisp
+
+  paper:77	EXTRACT cond
+  paper:151	EXTRACT jmapcar.el
 
 
 Introduction
@@ -35,7 +50,7 @@ language is in no way strictly functional, nor does it provide any
 abstraction, isolation, or safety for side-effects or reasoning about
 correctness.
 
-Lambda calculus
+	Lambda calculus
 
 Fraser³ defines an operator, μAV(E), over A: a set of arguments;
 V: a set of parameters (a context); and E: the expression of a function
@@ -57,7 +72,7 @@ Predicate selects function to apply to value
 The script cond applies a predicate function script to a value,
 to choose one of two other function scripts to apply to the value.
 
-Cond—functional conditional
+	Cond—functional conditional
 
 EXTRACT cond
 	predicate="$1"
@@ -69,3 +84,79 @@ EXTRACT cond
 	then "$true" "$value"
 	else "$false" "$value"
 	fi
+
+
+Apply function to each member of list
+
+The higher-order function map applies the function named by the first
+parameter to each of the remaining parameters.  The script map applies
+its function script parameter to each of its other value parameters,
+and executes all scripts in parallel with gmake.
+
+	Lambda calculus
+
+Jung⁴ and Sebasta⁵ provide notation⁶ to define map with a lambda
+expression (id est, the content of a function, without a name).
+The function apply-to-all (α) takes two parameters: the function f,
+and the set S.
+ ⁴ §4 in Jung, A.  2004.  A short introduction to the lambda calculus.
+http://www.cs.bham.ac.uk/\u223caxj/pub/papers/lambda-calculus.pdf
+ ⁵ Pp. 455–457 in Sebasta, R. W.  1993.  Concepts of Programming
+Languages, 2nd ed.  Computer Science.  Benjamin/Cummings.
+ ⁶ α(f,S) ≡ (λy.λx.x y) f s, ∀s ∈ S
+	By definition, it applies f and s (a member in S) to a lambda
+expression, which applies its first parameter x (f) as a function to
+its second parameter y (one value of s).
+	The applied expression returns another set, which contains as
+members each value returned by applying f to the corresponding member
+s in S. Category theory defines functor as this mapping between sets.
+
+	Category theory
+
+Our dependence⁷ on set theory notation in the previous section leads
+us to the functors of category theory.
+ ⁷ Even if only motivated by a lack of knowledge of the lambda calculus.
+	Sheard and Fegaras⁸ define map for type list,⁹ neatly phrased
+as a constructive activity. This style informs LISP implementations.
+ ⁸ P. 234 in Sheard, T. and Fegaras, L.  1993.  A fold for all seasons.
+In FPCA ’93: Proceedings of the conference on Functional programming
+languages and computer architecture.  ACM Press, New York, NY,
+233–242.  http://doi.acm.org/10.1145/165180.165216
+⁹ map^list (f) Nil = Nil
+map^list (f) (Cons(a,l)) = (Cons(f a,map^list (f) l)
+
+	Lisp
+
+Sebasta¹⁰ defines mapcar¹¹ with a lambda expression in Pure LISP.
+ ¹⁰ P. 471 in Sebasta, R. W.  1993.  Concepts of Programming
+Languages, 2nd ed.  Computer Science.  Benjamin/Cummings.
+ ¹¹ (DEFINE (
+	’(mapcar (LAMBDA (fun lis)
+		(cond
+			((NULL lis) ())
+			(T (CONS
+				(fun (CAR lis))
+				(mapcar fun (CDR lis))
+			))
+		)
+	))
+))
+
+Our LISP definition rephrases Hudak.¹² We named it jmapcar
+because GNU Emacs LISP already has a mapcar function.
+ ¹² P. 368 in Hudak, P. 1989.  Conception, evolution, and application
+of functional programming languages.  ACM Computing Surveys 21, 3,
+359–411.  http://doi.acm.org/10.1145/72551.72554
+
+EXTRACT jmapcar.el
+	(defun jmapcar (f l)
+		(if (null l)
+			nil
+			(cons (funcall f (car l))
+				(jmapcar f (cdr l))
+			)
+		)
+	)
+
+For example, (jmapcar ’cdr ’((a b c) (d e f))) evaluates to ((b c) (e f))
+in GNU Emacs 21.3.1.

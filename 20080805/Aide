@@ -1,8 +1,22 @@
 /git/pfsh/test/1/
 >wc -c
+Low-rent literate programming: Inferno sh commands to extract tab-indented blocks of text into their own files from a larger document:
 apply {rm $1} `{grep '^EXTRACT ' paper | sed 's,EXTRACT ,,'}
-apply {sed -n '/^EXTRACT '^$1^'$/,/^$/p' paper | sed '1d;s,^	,,' > $1; chmod +x $1} `{grep '^EXTRACT ' paper | sed 's,EXTRACT ,,'}
+apply {sed -n '/^EXTRACT '^$1^'$/,/^$/p' paper | sed '1d;$d;s,^	,,' > $1; chmod +x $1} `{grep '^EXTRACT ' paper | sed 's,EXTRACT ,,'}
 ls|mc
 |fmt
 |sort|uniq
 |tr A-Z a-z
+
+
+Edit ,x/\n\n.+\n\n/ x/.+\n/ {
+=
+p
+}
+Edit ,x/\n\nEXTRACT .+\n/ x/.+\n/ {
+=
+p
+}
+
+Edit x/^.+paper:[0-9]+\n.+/ s,\n,	,
+Edit x/^.+paper/ s,.*,  paper,g
