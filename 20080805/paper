@@ -1,0 +1,71 @@
+Parallel Functional Shell Programming
+Jason Catena
+5 August 2008
+
+Higher-order functions modularize, simplify, and parallelize programs.
+This paper presents, as literate programs, shell script variations of
+the higher-order functions compose, conditional, construct, filter,
+fold, map, unfold, and zip.  GNU Make implicitly parallelizes construct,
+map, and zip, for the most practical benefit.  We apply these higher-
+order scripts to, and in, a small library of utility scripts.
+
+
+Introduction
+
+Higher-order functions assist functional programming in the POSIX¹
+shell language.  The language already supports some key operations on
+first-class functions: scripts² can pass, modify (to subclass, or apply
+an aspect), and execute other shell scripts.
+ ¹ IEEE and Open Group.  2004.  The Open Group Base Specifications
+Issue 6: Shell & Utilities, 2004 ed.  The Open Group.
+http://www.opengroup.org/onlinepubs/ 009695399/utilities/contents.html
+ ² Scripts are loosely functions, since they take any number of parameters,
+and return a numeric value (a number in the shell variable $?) and
+textual values (standard output and standard error).  Mathematical
+functions can be defined as maps, from a domain set, to a single value
+of a range set.
+	The language supports anonymous functions, in the form of
+shell commands passed as text strings, without any type-checking or
+safety.  Since these do not use a lambda notation, they are limited to
+commands which take a member of the data set as their last parameter.
+We usually want to place any interesting functionality in actual files,
+so we can vary and reuse it.
+	Of course, shell scripts are all about side-effects, so the
+language is in no way strictly functional, nor does it provide any
+abstraction, isolation, or safety for side-effects or reasoning about
+correctness.
+
+Lambda calculus
+
+Fraser³ defines an operator, μAV(E), over A: a set of arguments;
+V: a set of parameters (a context); and E: the expression of a function
+in terms of the arguments, to apply to the parameter context.
+When fully evaluated, this new form yields the same value as (λA.E)V,
+a similarly constructed lambda expression with applied parameters.
+The difference is that μ varies the expression over a persistent
+context, while λ varies the parameters over a constant function.
+ ³ P. 412 in Fraser, A. G. 1971.  On the meaning of names in
+programming systems.  Communications of the ACM 14, 6 (Jun),
+409–416. http://doi.acm.org/10.1145/362604.362615
+	Fraser uses this equivalence to define a notation and algebra
+for operations over a file system, in terms of programming language
+constructs.
+
+
+Predicate selects function to apply to value
+
+The script cond applies a predicate function script to a value,
+to choose one of two other function scripts to apply to the value.
+
+Cond—functional conditional
+
+EXTRACT cond
+	predicate="$1"
+	true="$2"
+	false="$3"
+	value="$4"
+	
+	if "$predicate" "$value" >/dev/null
+	then "$true" "$value"
+	else "$false" "$value"
+	fi

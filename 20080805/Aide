@@ -1,0 +1,8 @@
+/git/pfsh/test/1/
+>wc -c
+apply {rm $1} `{grep '^EXTRACT ' paper | sed 's,EXTRACT ,,'}
+apply {sed -n '/^EXTRACT '^$1^'$/,/^$/p' paper | sed '1d;s,^	,,' > $1; chmod +x $1} `{grep '^EXTRACT ' paper | sed 's,EXTRACT ,,'}
+ls|mc
+|fmt
+|sort|uniq
+|tr A-Z a-z

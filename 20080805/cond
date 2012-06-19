@@ -1,0 +1,9 @@
+predicate="$1"
+true="$2"
+false="$3"
+value="$4"
+
+if "$predicate" "$value" >/dev/null
+then "$true" "$value"
+else "$false" "$value"
+fi

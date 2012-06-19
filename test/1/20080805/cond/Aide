@@ -1,0 +1,4 @@
+load expr; apply {echo $1} ${expr 1 10 seq}
+load expr; apply {osd ../../../../20080805/cond ./even ./div2 echo $1} ${expr 1 10 seq}
+ls|mc
+|sort|uniq
