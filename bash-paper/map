@@ -1,0 +1,14 @@
+case $# in
+	0|1)
+		exit 1
+	;;
+esac
+
+mkf=/tmp/mk.$(basename $0).tmp.$$
+f=$1
+shift
+
+sed "s,echo,$f," $(dirname $0)/map.mk > $mkf
+gmake -s -j -f $mkf $(echo $* | sed 's, ,.map ,g;s,$,.map,')
+
+rm -f $mkf

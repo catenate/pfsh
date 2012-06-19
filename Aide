@@ -3,8 +3,8 @@ Dump /git/pfsh/dump
 du -n | grep Aide
 ls|mc
 osd evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
-osd git add 20080805/maf test/1/20080805/maf
-osd git commit -a -m 'Maf accepts an anonymous function as its first parameter.'
+osd git add bash-paper/map	bash-paper/map.mk
+osd git commit -a -m 'Rename 20080805 to bash-paper.  Exclude from contents single lines which end in periods.  Add map.'
 osd git diff 72c2542
 osd git log --graph --oneline --all
 osd git push origin master

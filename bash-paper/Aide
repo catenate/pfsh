@@ -8,7 +8,7 @@ ls|mc
 |tr A-Z a-z
 
 
-Edit ,x/\n\n.+\n\n/ x/.+\n/ {
+Edit ,x/\n\n.+[^.]\n\n/ x/.+\n/ {
 =
 p
 }

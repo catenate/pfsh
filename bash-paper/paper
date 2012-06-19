@@ -13,21 +13,24 @@ order scripts to, and in, a small library of utility scripts.
 Contents
 
   paper:13	Contents
-  paper:33	Introduction
-  paper:58		Lambda calculus
-  paper:75	Predicate selects function to apply to value
-  paper:80		Cond—functional conditional
-  paper:94	Apply function to each member of list
-  paper:101		Lambda calculus
-  paper:119		Category theory
-  paper:133		Lisp
-  paper:169		Mas—serial
-  paper:180		Maf—anonymous functions
+  paper:36	Introduction
+  paper:61		Lambda calculus
+  paper:78	Predicate selects function to apply to value
+  paper:83		Cond—functional conditional
+  paper:97	Apply function to each member of list
+  paper:104		Lambda calculus
+  paper:122		Category theory
+  paper:136		Lisp
+  paper:172		Mas—serial
+  paper:183		Maf—anonymous functions
+  paper:205		Map—parallel
 
-  paper:82	EXTRACT cond
-  paper:156	EXTRACT jmapcar.el
-  paper:173	EXTRACT mas
-  paper:184	EXTRACT maf
+  paper:85	EXTRACT cond
+  paper:159	EXTRACT jmapcar.el
+  paper:176	EXTRACT mas
+  paper:187	EXTRACT maf
+  paper:212	EXTRACT map.mk
+  paper:220	EXTRACT map
 
 
 Introduction
@@ -127,7 +130,7 @@ as a constructive activity. This style informs LISP implementations.
 In FPCA ’93: Proceedings of the conference on Functional programming
 languages and computer architecture.  ACM Press, New York, NY,
 233–242.  http://doi.acm.org/10.1145/165180.165216
-⁹ map^list (f) Nil = Nil
+ ⁹ map^list (f) Nil = Nil
 map^list (f) (Cons(a,l)) = (Cons(f a,map^list (f) l)
 
 	Lisp
@@ -186,9 +189,11 @@ EXTRACT maf
 	echo $1 > $fsh
 	chmod +x $fsh
 	shift
+	
 	for x in "$@"; do
 		$fsh $x
 	done
+	
 	rm -f $fsh
 
 For example, strip the final extensions from filenames.
@@ -198,3 +203,42 @@ a
 b
 c
 d
+
+	Map—parallel
+
+If the function passed to map has no side-effects, then map can apply
+the function to all parameters at once.  We can implement this by
+constructing a makefile with a pattern-matching rule which executes
+the function on a word.
+
+EXTRACT map.mk
+	%.map: %
+		echo $<
+
+Use this version of map to execute shell commands.  It requires that
+each of its parameters be a file.  Exit if there are no parameters,
+or no more than the function name.
+
+EXTRACT map
+	case $# in
+		0|1)
+			exit 1
+		;;
+	esac
+	
+	mkf=/tmp/mk.$(basename $0).tmp.$$
+	f=$1
+	shift
+	
+	sed "s,echo,$f," $(dirname $0)/map.mk > $mkf
+	gmake -s -j -f $mkf $(echo $* | sed 's, ,.map ,g;s,$,.map,')
+	
+	rm -f $mkf
+
+This version once ran at least three times slower (90-100s total build
+time) than the script version (30s), when I tried to replace six calls:
+applying suffixes to files (twice), adding echo commands to makefiles,
+printing the name and first line of files, applying a set of transforms
+to a set of files, and applying a transform to a set of files.
+	This version did speed up the noweb -t function over the
+non-core noweb files, by completely parallelizing the operation.
