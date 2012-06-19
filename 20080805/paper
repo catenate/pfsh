@@ -1,6 +1,7 @@
 Parallel Functional Shell Programming
 Jason Catena
 5 August 2008
+
 Higher-order functions modularize, simplify, and parallelize programs.
 This paper presents, as literate programs, shell script variations of
 the higher-order functions compose, conditional, construct, filter,
@@ -11,18 +12,18 @@ order scripts to, and in, a small library of utility scripts.
 
 Contents
 
-  paper:12	Contents
-  paper:28	Introduction
-  paper:53		Lambda calculus
-  paper:70	Predicate selects function to apply to value
-  paper:75		Cond—functional conditional
-  paper:89	Apply function to each member of list
-  paper:96		Lambda calculus
-  paper:114		Category theory
-  paper:128		Lisp
+  paper:13	Contents
+  paper:29	Introduction
+  paper:54		Lambda calculus
+  paper:71	Predicate selects function to apply to value
+  paper:76		Cond—functional conditional
+  paper:90	Apply function to each member of list
+  paper:97		Lambda calculus
+  paper:115		Category theory
+  paper:129		Lisp
 
-  paper:77	EXTRACT cond
-  paper:151	EXTRACT jmapcar.el
+  paper:78	EXTRACT cond
+  paper:152	EXTRACT jmapcar.el
 
 
 Introduction
@@ -160,3 +161,15 @@ EXTRACT jmapcar.el
 
 For example, (jmapcar ’cdr ’((a b c) (d e f))) evaluates to ((b c) (e f))
 in GNU Emacs 21.3.1.
+
+	Mas—serial
+
+Use this version of map to manipulate text.
+
+EXTRACT mas
+	f=$1
+	shift
+	for x in "$@"; do
+		$f $x
+	done
+

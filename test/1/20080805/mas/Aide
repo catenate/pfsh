@@ -1,0 +1,4 @@
+load expr; series = `{apply {echo $1} ${expr 1 10 seq}}; echo $series
+load expr; series = `{osd ../../../../20080805/mas ./add1 ${expr 1 10 seq}}; echo $series
+ls|mc
+|sort|uniq

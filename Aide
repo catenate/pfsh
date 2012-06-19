@@ -3,8 +3,8 @@ Dump /git/pfsh/dump
 du -n | grep Aide
 ls|mc
 osd evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
-osd git add 20080805/jmapcar.el
-osd git commit -a -m 'Start to transcribe map.  Add table of contents and its commands.'
+osd git add 20080805/mas test/1/20080805/mas
+osd git commit -a -m 'Add serial map and its test.'
 osd git diff 72c2542
 osd git log --graph --oneline --all
 osd git push origin master

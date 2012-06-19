@@ -1,0 +1,5 @@
+f=$1
+shift
+for x in "$@"; do
+	$f $x
+done
