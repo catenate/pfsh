@@ -1,0 +1,3 @@
+echo start 5 $(date)
+sleep 5
+echo end 5 $(date)

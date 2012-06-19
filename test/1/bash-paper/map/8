@@ -1,0 +1,3 @@
+echo start 8 $(date)
+sleep 8
+echo end 8 $(date)

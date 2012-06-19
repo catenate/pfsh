@@ -1,0 +1,6 @@
+load expr; apply {echo echo start $1 '$(date)' > $1; echo sleep $1 >> $1; echo echo end $1 '$(date)' >> $1} ${expr 1 10 seq}
+ls|mc
+load expr; osd /usr/inferno/git/pfsh/bash-paper/map bash ${expr 1 10 seq}
+osd time /usr/inferno/git/pfsh/bash-paper/map md5sum `{du -n /fonts | sed 's,/fonts,/usr/inferno/fonts,g'}
+osd time md5sum `{du -n /fonts | sed 's,/fonts,/usr/inferno/fonts,g'}
+|sort|uniq

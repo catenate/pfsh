@@ -231,7 +231,7 @@ EXTRACT map
 	shift
 	
 	sed "s,echo,$f," $(dirname $0)/map.mk > $mkf
-	gmake -s -j -f $mkf $(echo $* | sed 's, ,.map ,g;s,$,.map,')
+	make -s -j -f $mkf $(echo $* | sed 's, ,.map ,g;s,$,.map,')
 	
 	rm -f $mkf
 

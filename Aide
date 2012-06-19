@@ -3,10 +3,10 @@ Dump /git/pfsh/dump
 du -n | grep Aide
 ls|mc
 osd evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
-osd git add bash-paper/map	bash-paper/map.mk
-osd git commit -a -m 'Rename 20080805 to bash-paper.  Exclude from contents single lines which end in periods.  Add map.'
+osd git add test/1/bash-paper/map
+osd git commit -a -m 'Test map.'
 osd git diff 72c2542
-osd git log --graph --oneline --all
+osd git log --decorate --graph --oneline --all
 osd git push origin master
 osd git status
 |sort|uniq
