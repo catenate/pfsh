@@ -4,8 +4,8 @@ du -n | grep Aide
 ls|mc
 osd evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
 osd git add test/1/bash-paper/map
-osd git commit -a -m 'Test map.'
-osd git diff 72c2542
+osd git commit -a -m 'Use ⁱ ⁲ ⁳ instead of ¹ ² ³.'
+osd git diff ca6ba40
 osd git log --decorate --graph --oneline --all
 osd git push origin master
 osd git status

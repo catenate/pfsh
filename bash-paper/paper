@@ -35,14 +35,14 @@ Contents
 
 Introduction
 
-Higher-order functions assist functional programming in the POSIX¹
+Higher-order functions assist functional programming in the POSIXⁱ
 shell language.  The language already supports some key operations on
-first-class functions: scripts² can pass, modify (to subclass, or apply
+first-class functions: scripts⁲ can pass, modify (to subclass, or apply
 an aspect), and execute other shell scripts.
- ¹ IEEE and Open Group.  2004.  The Open Group Base Specifications
+ ⁱ IEEE and Open Group.  2004.  The Open Group Base Specifications
 Issue 6: Shell & Utilities, 2004 ed.  The Open Group.
 http://www.opengroup.org/onlinepubs/ 009695399/utilities/contents.html
- ² Scripts are loosely functions, since they take any number of parameters,
+ ⁲ Scripts are loosely functions, since they take any number of parameters,
 and return a numeric value (a number in the shell variable $?) and
 textual values (standard output and standard error).  Mathematical
 functions can be defined as maps, from a domain set, to a single value
@@ -60,14 +60,14 @@ correctness.
 
 	Lambda calculus
 
-Fraser³ defines an operator, μAV(E), over A: a set of arguments;
+Fraser⁳ defines an operator, μAV(E), over A: a set of arguments;
 V: a set of parameters (a context); and E: the expression of a function
 in terms of the arguments, to apply to the parameter context.
 When fully evaluated, this new form yields the same value as (λA.E)V,
 a similarly constructed lambda expression with applied parameters.
 The difference is that μ varies the expression over a persistent
 context, while λ varies the parameters over a constant function.
- ³ P. 412 in Fraser, A. G. 1971.  On the meaning of names in
+ ⁳ P. 412 in Fraser, A.G.  1971.  On the meaning of names in
 programming systems.  Communications of the ACM 14, 6 (Jun),
 409–416. http://doi.acm.org/10.1145/362604.362615
 	Fraser uses this equivalence to define a notation and algebra
@@ -109,7 +109,7 @@ The function apply-to-all (α) takes two parameters: the function f,
 and the set S.
  ⁴ §4 in Jung, A.  2004.  A short introduction to the lambda calculus.
 http://www.cs.bham.ac.uk/\u223caxj/pub/papers/lambda-calculus.pdf
- ⁵ Pp. 455–457 in Sebasta, R. W.  1993.  Concepts of Programming
+ ⁵ Pp. 455–457 in Sebasta, R.W.  1993.  Concepts of Programming
 Languages, 2nd ed.  Computer Science.  Benjamin/Cummings.
  ⁶ α(f,S) ≡ (λy.λx.x y) f s, ∀s ∈ S
 	By definition, it applies f and s (a member in S) to a lambda
@@ -135,10 +135,10 @@ map^list (f) (Cons(a,l)) = (Cons(f a,map^list (f) l)
 
 	Lisp
 
-Sebasta¹⁰ defines mapcar¹¹ with a lambda expression in Pure LISP.
- ¹⁰ P. 471 in Sebasta, R. W.  1993.  Concepts of Programming
+Sebastaⁱ⁰ defines mapcarⁱⁱ with a lambda expression in Pure LISP.
+ ⁱ⁰ P. 471 in Sebasta, R. W.  1993.  Concepts of Programming
 Languages, 2nd ed.  Computer Science.  Benjamin/Cummings.
- ¹¹ (DEFINE (
+ ⁱⁱ (DEFINE (
 	’(mapcar (LAMBDA (fun lis)
 		(cond
 			((NULL lis) ())
@@ -150,9 +150,9 @@ Languages, 2nd ed.  Computer Science.  Benjamin/Cummings.
 	))
 ))
 
-Our LISP definition rephrases Hudak.¹² We named it jmapcar
+Our LISP definition rephrases Hudak.ⁱ⁲ We named it jmapcar
 because GNU Emacs LISP already has a mapcar function.
- ¹² P. 368 in Hudak, P. 1989.  Conception, evolution, and application
+ ⁱ⁲ P. 368 in Hudak, P.  1989.  Conception, evolution, and application
 of functional programming languages.  ACM Computing Surveys 21, 3,
 359–411.  http://doi.acm.org/10.1145/72551.72554
 
