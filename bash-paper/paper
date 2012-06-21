@@ -13,24 +13,27 @@ order scripts to, and in, a small library of utility scripts.
 Contents
 
   paper:13	Contents
-  paper:36	Introduction
-  paper:61		Lambda calculus
-  paper:78	Predicate selects function to apply to value
-  paper:83		Cond—functional conditional
-  paper:97	Apply function to each member of list
-  paper:104		Lambda calculus
-  paper:122		Category theory
-  paper:136		Lisp
-  paper:172		Mas—serial
-  paper:183		Maf—anonymous functions
-  paper:205		Map—parallel
+  paper:39	Introduction
+  paper:64		Lambda calculus
+  paper:81	Predicate selects function to apply to value
+  paper:86		Cond—functional conditional
+  paper:100	Apply function to each member of list
+  paper:107		Lambda calculus
+  paper:125		Category theory
+  paper:139		Lisp
+  paper:175		Mas—serial
+  paper:186		Maf—anonymous functions
+  paper:210		Map—parallel
+  paper:247		Comap—parallel, switch order of arguments
+  paper:267	Reduce list by predicate
 
-  paper:85	EXTRACT cond
-  paper:159	EXTRACT jmapcar.el
-  paper:176	EXTRACT mas
-  paper:187	EXTRACT maf
-  paper:212	EXTRACT map.mk
-  paper:220	EXTRACT map
+  paper:88	EXTRACT cond
+  paper:162	EXTRACT jmapcar.el
+  paper:179	EXTRACT mas
+  paper:190	EXTRACT maf
+  paper:217	EXTRACT map.mk
+  paper:225	EXTRACT map
+  paper:253	EXTRACT comap
 
 
 Introduction
@@ -221,9 +224,7 @@ or no more than the function name.
 
 EXTRACT map
 	case $# in
-		0|1)
-			exit 1
-		;;
+		0|1) exit 1 ;;
 	esac
 	
 	mkf=/tmp/mk.$(basename $0).tmp.$$
@@ -242,3 +243,33 @@ printing the name and first line of files, applying a set of transforms
 to a set of files, and applying a transform to a set of files.
 	This version did speed up the noweb -t function over the
 non-core noweb files, by completely parallelizing the operation.
+
+	Comap—parallel, switch order of arguments
+
+Use this version of map with compose, when the target file is constant,
+but the name of the function varies.
+	Takes only two arguments, for now, as part of the compose pipeline.
+
+EXTRACT comap
+	case $# in
+		0|1) exit 1 ;;
+	esac
+	
+	mkf=/tmp/mk.$(basename $0).tmp.$$
+	f=$2
+	
+	sed "s,echo,$f," $(dirname $0)/map.mk > $mkf
+	make -s -j -f $mkf $(echo $1 | sed 's, ,.map ,g;s,$,.map,')
+	
+	rm -f $mkf
+
+
+Reduce list by predicate
+
+The higher-order function filter applies the predicate function named
+by the first parameter to each of the remaining parameters, reducing
+the set to those values for which the predicate holds.  The script
+filter applies its function script parameter to each of its other
+value parameters, returning the value if the function script returns 0
+(true for the shell).
+

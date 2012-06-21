@@ -3,10 +3,9 @@ case $# in
 esac
 
 mkf=/tmp/mk.$(basename $0).tmp.$$
-f=$1
-shift
+f=$2
 
 sed "s,echo,$f," $(dirname $0)/map.mk > $mkf
-make -s -j -f $mkf $(echo $* | sed 's, ,.map ,g;s,$,.map,')
+make -s -j -f $mkf $(echo $1 | sed 's, ,.map ,g;s,$,.map,')
 
 rm -f $mkf

@@ -1,5 +1,6 @@
 /git/pfsh/test/1/bash-paper
 >wc -c
+Edit s,^,	,g
 apply {rm $1} `{grep '^EXTRACT ' paper | sed 's,EXTRACT ,,'}
 apply {sed -n '/^EXTRACT '^$1^'$/,/^$/p' paper | sed '1d;$d;s,^	,,' > $1; chmod +x $1} `{grep '^EXTRACT ' paper | sed 's,EXTRACT ,,'}
 ls|mc

@@ -1,0 +1,5 @@
+ls|mc
+osd /usr/inferno/git/pfsh/bash-paper/comap Aide cat
+osd /usr/inferno/git/pfsh/bash-paper/comap Aide ls
+osd /usr/inferno/git/pfsh/bash-paper/comap Aide md5sum
+|sort|uniq
