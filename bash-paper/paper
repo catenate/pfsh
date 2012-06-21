@@ -13,27 +13,28 @@ order scripts to, and in, a small library of utility scripts.
 Contents
 
   paper:13	Contents
-  paper:39	Introduction
-  paper:64		Lambda calculus
-  paper:81	Predicate selects function to apply to value
-  paper:86		Cond—functional conditional
-  paper:100	Apply function to each member of list
-  paper:107		Lambda calculus
-  paper:125		Category theory
-  paper:139		Lisp
-  paper:175		Mas—serial
-  paper:186		Maf—anonymous functions
-  paper:210		Map—parallel
-  paper:247		Comap—parallel, switch order of arguments
-  paper:267	Reduce list by predicate
+  paper:40	Introduction
+  paper:65		Lambda calculus
+  paper:82	Predicate selects function to apply to value
+  paper:87		Cond—functional conditional
+  paper:101	Apply function to each member of list
+  paper:108		Lambda calculus
+  paper:126		Category theory
+  paper:140		Lisp
+  paper:176		Mas—serial
+  paper:187		Maf—anonymous functions
+  paper:211		Map—parallel
+  paper:248		Comap—parallel, switch order of arguments
+  paper:268	Reduce list by predicate
+  paper:278	Colophon
 
-  paper:88	EXTRACT cond
-  paper:162	EXTRACT jmapcar.el
-  paper:179	EXTRACT mas
-  paper:190	EXTRACT maf
-  paper:217	EXTRACT map.mk
-  paper:225	EXTRACT map
-  paper:253	EXTRACT comap
+  paper:89	EXTRACT cond
+  paper:163	EXTRACT jmapcar.el
+  paper:180	EXTRACT mas
+  paper:191	EXTRACT maf
+  paper:218	EXTRACT map.mk
+  paper:226	EXTRACT map
+  paper:254	EXTRACT comap
 
 
 Introduction
@@ -273,3 +274,35 @@ filter applies its function script parameter to each of its other
 value parameters, returning the value if the function script returns 0
 (true for the shell).
 
+
+Colophon
+
+This document was typed into Acme running in Inferno on Linux Mint.
+It was transcribed from a LaTeX and noweb literate program written on
+a Red Hat linux machine, using the tufte-latex article document class.
+
+The font file used during its transcription maps the Unicode point
+range 0x2070 to 0x208E to font pelm/supsub.9.  This font file supplies
+superscript 1, 2, and 3 at code points 0x2071, 0x2072, and 0x2073,
+respectively, where they fit better (as part of the range: superscript 0
+at 0x2070, to superscript 9 at 0x2079) than a superscript i and two
+empty characters.
+
+Used these Edit commands in Acme to generate the table of contents.
+New sections require two passes: one to add new lines to the table,
+and another to adjust the line numbers to count the new lines.
+
+Edit ,x/\n\n.+[^.]\n\n/ x/.+\n/ {
+=
+p
+}
+Edit ,x/\n\nEXTRACT .+\n/ x/.+\n/ {
+=
+p
+}
+
+Run these Edit commands on the output lines to produce the exact
+format in the Contents section.
+
+Edit x/^.+paper:[0-9]+\n.+/ s,\n,	,
+Edit x/^.+paper/ s,.*,  paper,g

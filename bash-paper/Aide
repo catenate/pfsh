@@ -7,16 +7,3 @@ ls|mc
 |fmt
 |sort|uniq
 |tr A-Z a-z
-
-
-Edit ,x/\n\n.+[^.]\n\n/ x/.+\n/ {
-=
-p
-}
-Edit ,x/\n\nEXTRACT .+\n/ x/.+\n/ {
-=
-p
-}
-
-Edit x/^.+paper:[0-9]+\n.+/ s,\n,	,
-Edit x/^.+paper/ s,.*,  paper,g

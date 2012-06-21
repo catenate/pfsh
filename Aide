@@ -4,7 +4,7 @@ du -n | grep Aide
 ls|mc
 osd evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
 osd git add test/1/bash-paper/map
-osd git commit -a -m 'Transcribe comap and add a test; start transcribing filter.'
+osd git commit -a -m 'Add colophon to discuss the document''s font ad table of contents.'
 osd git diff 4b10ea0
 osd git log --decorate --graph --oneline --all
 osd git push origin master
