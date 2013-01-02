@@ -1,0 +1,5 @@
+Edit ,|sort|uniq
+echo begin; sleep 5; echo end
+load expr; echo ${expr 1 10 seq}
+load expr; map echo ${expr 1 10 seq}
+load expr; map 'sh sleep' ${expr 1 10 seq}
