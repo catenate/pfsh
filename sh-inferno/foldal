@@ -1,0 +1,4 @@
+#!/dis/sh
+(f v xs) = $*
+apply {x = $1; v=`{$f $v $x}} $xs
+echo $v
