@@ -1,0 +1,22 @@
+#!/dis/sh
+# this program should probably be in Limbo instead
+
+tmp = /tmp/stdev.${pid}
+cat - > $tmp
+data = `{cat $tmp}
+if {no $data} {exit 1}
+
+data_sum = `{foldal add 0 $data}
+data_count = `{foldal add 0 `{map 1 $data}}
+data_mean=`{fc $data_sum $data_count /}
+
+diffs = `{apply {fc $1 $data_mean -} $data}
+diffs_squares = `{apply {fc $1 2 xx} $diffs}
+diffs_squares_sum = `{foldal add 0 $diffs_squares}
+diffs_squares_mean = `{fc $diffs_squares_sum $data_count /}
+diffs_squares_mean_sqrt = `{fc $diffs_squares_mean 0.5 xx}
+
+echo $diffs_squares_mean_sqrt
+# 68% of values fall within this amount of the mean
+
+rm $tmp
