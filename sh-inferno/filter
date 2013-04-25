@@ -1,0 +1,10 @@
+#!/dis/sh
+# filter ${quote {ftest -e $x}} filter nofilter
+load std
+
+(pred xs) = $*
+apply {
+	x = $1
+	if {${unquote $pred}} {echo $x}
+} $xs
+exit 0

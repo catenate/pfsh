@@ -5,7 +5,7 @@ dos evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
 du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
-git commit -a -m 'Add scripts to print 1, subtract two numbers, and compute the standard deviation of standard input.'
+git commit -a -m 'Filter accepts a quoted shell code block, and prints each remaining parameter $x for which the code block returns true.'
 git diff 4b10ea0
 git log --decorate --graph --oneline --all | sed 10q
 log git
