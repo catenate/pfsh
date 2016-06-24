@@ -1,0 +1,2 @@
+set -e
+test -f $1 && test -x $1

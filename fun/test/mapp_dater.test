@@ -1,0 +1,6 @@
+path pastout bs mapp_dater
+bs/mapp_dater.test.out
+
+	> set -x
+	> mapp "date -r" $(ls)
+	> ls | mapp "date -r"

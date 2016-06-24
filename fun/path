@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e
+
+dir=$(dirname "$(readlink -f $0)")
+if ! echo $dir | grep '^/' >/dev/null; then
+	dir=$(pwd)/$dir
+fi
+
+cwd=$(pwd)
+cd $dir
+export bin=$(pwd)
+export mock=$bin/../mock
+cd $cwd
+
+dirs=$(find $dir -type d | sort)
+for d in $dirs; do
+	cd $d
+	minpaths=$minpaths:$(pwd)
+	cd $cwd
+done
+
+cd $dir/../perl
+minpaths=$minpaths:$(pwd)
+cd $cwd
+
+cd $dir/../test
+minpaths=$minpaths:$(pwd)
+cd $cwd
+
+minpaths=$(echo $minpaths | sed 's,^:,,')
+export PATH=$minpaths:$PATH
+
+"$@"

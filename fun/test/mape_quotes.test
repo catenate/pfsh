@@ -1,0 +1,6 @@
+path pastout bs mape_quotes
+bs/mape_quotes.test.out
+
+	> set -eux
+	> shortdate=$(date '+%Y%m%d.%H%M%S')
+	> mape "echo \$x is part of $shortdate" $(date)

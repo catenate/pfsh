@@ -1,0 +1,58 @@
+set -u
+self=$(basename $0)
+tmp=/tmp/$self.$$
+rv=0
+tctestname="$self $*"
+
+p=
+if test "$#" != "0"; then
+	if test "$1" = "-p"; then
+		p="-p"
+		shift
+	fi
+fi
+
+case $# in
+	0)
+		echo "usage: $self (-p)? $subdir ($test)*"
+		exit 1
+		;;
+	1)
+		subdir=$1
+		shift
+		if ! test -d $subdir; then
+			mkdir $subdir
+		fi
+
+		tests="$(ls *.test)"
+		;;
+	*)
+		subdir=$1
+		shift
+		if ! test -d $subdir; then
+			mkdir $subdir
+		fi
+
+		tests="$@"
+		tests="$(echo $tests | fmt -w 1 | sed 's $ .test ')"
+		;;
+esac
+
+echo "$self: running tests in parallel: $(echo $tests | sed 's \.test  g')"
+echo "##teamcity[testSuiteStarted name='$tctestname parallel']"
+export pastout_schedule=parallel
+mapp "testsh $p $subdir" $tests | tee $tmp
+failures=$(grep '^testsh: error' $tmp | sed 's .*/  ;s \.out$  ' | sort | uniq)
+rm -f $tmp
+echo "##teamcity[testSuiteFinished name='$tctestname parallel']"
+if test -z "$failures"; then
+	exit 0
+fi
+
+echo "$self: rerunning failed tests in series: $(echo $failures | sed 's \.test  g')"
+echo "##teamcity[testSuiteStarted name='$tctestname series']"
+export pastout_schedule=serial
+maps "testsh $p $subdir" $failures
+rv=$?
+echo "##teamcity[testSuiteFinished name='$tctestname series']"
+exit $rv

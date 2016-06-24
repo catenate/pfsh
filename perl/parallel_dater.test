@@ -1,0 +1,2 @@
+	> parallel date -r < ls
+	> ls | parallel date -r

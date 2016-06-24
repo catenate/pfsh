@@ -1,0 +1,4 @@
+	> if false; then
+	> 	echo "$(basename $0): error: false is not false"
+	> 	exit 1
+	> fi

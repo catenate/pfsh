@@ -1,0 +1,19 @@
+set -ux
+
+retries=$1
+shift
+sleep=$1
+shift
+
+retry=0
+rv=1
+while test $retry -lt $retries && test $rv -ne 0; do
+	"$@"
+	rv=$?
+	retry=$(expr $retry + 1)
+	if test $retry -lt $retries && test $rv -ne 0; then
+		sleep $sleep
+	fi
+done
+
+exit $rv

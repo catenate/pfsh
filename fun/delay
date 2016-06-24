@@ -1,0 +1,9 @@
+set -ux
+
+delay_duration=$1
+shift
+
+sleep $delay_duration
+
+"$@"
+

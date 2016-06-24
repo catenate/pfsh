@@ -1,0 +1,9 @@
+path pastout bs filtre
+bs/filtre.test.out
+
+	> set -eux
+
+        > test "$(filtre 'test $x = 0' 0 1 2 3)" = "0"
+        > test "$(filtre 'test $x = 1' 0 1 2 3)" = "1"
+        > test "$(filtre 'test $x = 2' 0 1 2 3)" = "2"
+	> test "$(filtre 'test $x = 3' 0 1 2 3)" = "3"

@@ -1,0 +1,7 @@
+path pastout bs mape_echo
+bs/mape_echo.test.out
+
+	> set -eux
+	> finddirs=$(find . -type d | sed "s,\.,$(pwd),")
+	> mapedirs=$(mape 'cd $x; pwd' $finddirs)
+	> test "$finddirs" = "$mapedirs"

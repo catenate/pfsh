@@ -1,0 +1,15 @@
+	> set -eux
+
+	> if oneof; then exit 1; fi
+
+	> if oneof a; then exit 1; fi
+
+	> if oneof a b; then exit 1; fi
+
+	> oneof a a
+
+	> oneof a a b
+
+	> oneof a b a
+
+

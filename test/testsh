@@ -1,0 +1,54 @@
+past=1
+rv=0
+
+if test "$1" = "-p"; then
+	past=0
+	shift
+fi
+
+subdir=$1
+if ! test -d $subdir; then
+	mkdir $subdir
+fi
+cd $subdir
+shift
+
+test=$1
+shift
+testname=$(echo $test | sed 's \.test  ')
+
+sed -n 's,^	> ,,p' ../$test >$test.sh
+
+if test "$past" = "1"; then
+	if test -e $test.out; then
+		mv $test.out $test.past
+	fi
+fi
+
+echo "##teamcity[testStarted name='$testname' captureStandardOutput='true']"
+/usr/bin/time -f "testsh: $test: elapsed real time: %E" sh $test.sh >$test.out 2>&1
+rv=$?
+
+if test $rv -ne 0; then
+	cat $test.out
+
+	if test "$pastout_schedule" = "parallel"; then
+		echo "##teamcity[testIgnored name='$testname' message='run in parallel, trying again in series']"
+	else
+		if grep '^MUTED$' ../$test; then
+			rv=0
+			echo "##teamcity[testIgnored name='$testname' message='test case muted']"
+		else
+			echo "##teamcity[testFailed name='$testname' message='exit code $rv']"
+		fi
+	fi
+
+	echo "$(basename $0): error $rv in $pastout_schedule $subdir/$test.out"
+fi
+
+if test "$past" = "1"; then
+	if ! test -e $test.past; then touch $test.past; fi
+fi
+
+echo "##teamcity[testFinished name='$testname']"
+exit $rv

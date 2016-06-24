@@ -1,0 +1,12 @@
+#nb serial maps bash script expr
+rv=0
+
+f=$1
+shift
+
+for x in "$@"; do
+	$f "$x"
+	rv=$(expr $rv + $?)
+done
+
+exit $rv

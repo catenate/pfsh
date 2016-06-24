@@ -1,0 +1,32 @@
+path pastout bs mape_expr
+bs/mape_expr.test.out
+
+	> set -ux
+
+	> mape 'rv $x' 0; if test $? != 0; then exit 1; fi
+	> mape 'rv $x' 1; if test $? != 1; then exit 1; fi
+	> mape 'rv $x' 2; if test $? != 2; then exit 1; fi
+
+	> mape 'rv $x' 0 0; if test $? != 0; then exit 1; fi
+	> mape 'rv $x' 1 0; if test $? != 1; then exit 1; fi
+	> mape 'rv $x' 2 0; if test $? != 2; then exit 1; fi
+
+	> mape 'rv $x' 0 1; if test $? != 1; then exit 1; fi
+	> mape 'rv $x' 1 1; if test $? != 2; then exit 1; fi
+	> mape 'rv $x' 2 1; if test $? != 3; then exit 1; fi
+
+	> mape 'rv $x' 0 2; if test $? != 2; then exit 1; fi
+	> mape 'rv $x' 1 2; if test $? != 3; then exit 1; fi
+	> mape 'rv $x' 2 2; if test $? != 4; then exit 1; fi
+
+	> mape 'rv $x' 0 0 0; if test $? != 0; then exit 1; fi
+	> mape 'rv $x' 1 0 0; if test $? != 1; then exit 1; fi
+	> mape 'rv $x' 2 0 0; if test $? != 2; then exit 1; fi
+
+	> mape 'rv $x' 0 1 1; if test $? != 2; then exit 1; fi
+	> mape 'rv $x' 1 1 1; if test $? != 3; then exit 1; fi
+	> mape 'rv $x' 2 1 1; if test $? != 4; then exit 1; fi
+
+	> mape 'rv $x' 0 2 2; if test $? != 4; then exit 1; fi
+	> mape 'rv $x' 1 2 2; if test $? != 5; then exit 1; fi
+	> mape 'rv $x' 2 2 2; if test $? != 6; then exit 1; fi

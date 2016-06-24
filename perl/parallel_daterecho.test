@@ -1,0 +1,5 @@
+	> set -x
+	> tmp=/tmp/daterecho.$$
+	> ls | parallel date -r > $tmp
+	> cat $tmp
+	> cat $tmp | parallel echo date

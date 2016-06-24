@@ -1,14 +1,19 @@
 /dis/Aide
+.git/info/exclude
 Dump /github/pfsh/dump
 Edit ,|sort|uniq
 dos evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
 du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
-git commit -a -m 'Filter accepts a quoted shell code block, and prints each remaining parameter $x for which the code block returns true.'
+git add --all .
+git commit -a -m 'Add tests and parallel functional shell scripts for bash in fun.'
+git config --get remote.origin.url
 git diff 4b10ea0
+git fetch
 git log --decorate --graph --oneline --all | sed 10q
 log git
 ls -F | mc
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
+git config --get remote.origin.url

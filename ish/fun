@@ -1,0 +1,3 @@
+#!/dis/sh
+log path $*
+host bash `{osdir /github/pfsh/fun/path} $*
