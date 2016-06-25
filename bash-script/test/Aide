@@ -1,8 +1,6 @@
 /dis
 Edit ,|sort|uniq
-fun mape 'echo $x' 1 2 3 4
-fun maps echo 1 2 3 4
-fun pastout bs
 pfsh mape 'echo $x' 1 2 3 4
+pfsh maps echo 1 2 3 4
 pfsh pastout bs
 whatis pfsh

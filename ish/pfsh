@@ -1,3 +1,3 @@
 #!/dis/sh
 log path $*
-host bash `{osdir /github/pfsh/pfsh} $*
+host bash `{osdir /github/pfsh/bash-script/path} $*
