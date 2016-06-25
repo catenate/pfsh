@@ -1,7 +1,0 @@
-f=$1
-shift
-for x in $@; do
-	if $f $x >/dev/null; then
-		echo $x
-	fi
-done

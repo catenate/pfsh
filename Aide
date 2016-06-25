@@ -1,5 +1,5 @@
-/dis/Aide
 .git/info/exclude
+/dis/Aide
 Dump /github/pfsh/dump
 Edit ,|sort|uniq
 dos evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
@@ -12,8 +12,8 @@ git config --get remote.origin.url
 git diff 4b10ea0
 git fetch
 git log --decorate --graph --oneline --all | sed 10q
+git push origin master
 log git
 ls -F | mc
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
-git config --get remote.origin.url
