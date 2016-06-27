@@ -7,7 +7,7 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Move fun scripts to bash-script.  Also need to update path scripts.'
+git commit -a -m 'Add a test case to filtre executable files.'
 git config --get remote.origin.url
 git diff 4b10ea0
 git fetch

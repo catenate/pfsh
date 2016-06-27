@@ -1,6 +1,10 @@
 /dis
 Edit ,|sort|uniq
-pfsh mape 'echo $x' 1 2 3 4
+pfsh time mapp 'echo $x; sleep $x' `{load expr; echo ${expr 1 12 seq}}
+pfsh time mape 'echo $x; sleep $x' `{load expr; echo ${expr 1 12 seq}}
+pfsh time maps 'sleep' `{load expr; echo ${expr 1 12 seq}}
+pfsh time mapp 'sleep' `{load expr; echo ${expr 1 12 seq}}
 pfsh maps echo 1 2 3 4
 pfsh pastout bs
 whatis pfsh
+man expr
