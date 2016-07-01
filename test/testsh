@@ -26,7 +26,7 @@ if test "$past" = "1"; then
 fi
 
 echo "##teamcity[testStarted name='$testname' captureStandardOutput='true']"
-/usr/bin/time -f "testsh: $test: elapsed real time: %E" sh $test.sh >$test.out 2>&1
+sh $test.sh >$test.out 2>&1
 rv=$?
 
 if test $rv -ne 0; then
