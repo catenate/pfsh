@@ -7,13 +7,14 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Helpful commands.'
+git commit -a -m 'Restore the line in testsh which actually runs the test.'
 git config --get remote.origin.url
-git diff 4b10ea0
+nsh git diff 5e4e218 bdd5e60
 git fetch
+git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git log --decorate --graph --oneline --all | sed 10q
-git rebase origin/master
 git push origin master
+git rebase origin/master
 log git
 ls -F | mc
 nsh git diff
