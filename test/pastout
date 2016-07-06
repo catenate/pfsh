@@ -14,7 +14,7 @@ fi
 
 case $# in
 	0)
-		echo "usage: $self (-p)? $subdir ($test)*"
+		echo "usage: $self (-p)? \$subdir (\$test)*"
 		exit 1
 		;;
 	1)
@@ -39,20 +39,20 @@ case $# in
 esac
 
 echo "$self: running tests in parallel: $(echo $tests | sed 's \.test  g')"
-echo "##teamcity[testSuiteStarted name='$tctestname parallel']"
+#echo "##teamcity[testSuiteStarted name='$tctestname parallel']"
 export pastout_schedule=parallel
 mapp "testsh $p $subdir" $tests | tee $tmp
 failures=$(grep '^testsh: error' $tmp | sed 's .*/  ;s \.out$  ' | sort | uniq)
 rm -f $tmp
-echo "##teamcity[testSuiteFinished name='$tctestname parallel']"
+#echo "##teamcity[testSuiteFinished name='$tctestname parallel']"
 if test -z "$failures"; then
 	exit 0
 fi
 
 echo "$self: rerunning failed tests in series: $(echo $failures | sed 's \.test  g')"
-echo "##teamcity[testSuiteStarted name='$tctestname series']"
+#echo "##teamcity[testSuiteStarted name='$tctestname series']"
 export pastout_schedule=serial
 maps "testsh $p $subdir" $failures
 rv=$?
-echo "##teamcity[testSuiteFinished name='$tctestname series']"
+#echo "##teamcity[testSuiteFinished name='$tctestname series']"
 exit $rv

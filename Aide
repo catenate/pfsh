@@ -7,7 +7,7 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Add a test case to filtre executable files.'
+git commit -a -m 'Add a script to run all the tests under the current directory.'
 git config --get remote.origin.url
 git diff 4b10ea0
 git fetch
@@ -15,5 +15,6 @@ git log --decorate --graph --oneline --all | sed 10q
 git push origin master
 log git
 ls -F | mc
+nsh git diff
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
