@@ -1,4 +1,4 @@
-pfsh pastout bs filtre
+host pfsh pastout filtre
 bs/filtre.test.out
 
 	> set -eux
@@ -8,4 +8,4 @@ bs/filtre.test.out
 	> test "$(filtre 'test $x = 2' 0 1 2 3)" = "2"
 	> test "$(filtre 'test $x = 3' 0 1 2 3)" = "3"
 
-	> test "$(filtre 'test -x $x' ../*)" = "../bs"
+	> test "$(filtre 'test -x $x' ../*)" = "../log"

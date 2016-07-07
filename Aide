@@ -4,17 +4,19 @@
 Dump /github/pfsh/dump
 Edit ,|sort|uniq
 dos evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
+du -n | grep '\.test$'
 du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Parse new “testsh wrap” and “testsh log” commands from test cases, to reduce the size of the pastout incantation.  Rename “MUTED” command to“testsh mute”.'
+git commit -a -m 'Correct test cases to not fail.'
 git config --get remote.origin.url
+git diff
 git fetch
 git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git log --decorate --graph --oneline --all | sed 10q
-if {host pfsh regress} {echo git push origin master}
 git rebase origin/master
+if {host pfsh regress} {echo git push origin master}
 log git
 ls -F | mc
 nsh git diff

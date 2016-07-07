@@ -1,2 +1,5 @@
+*.test.out
+*.test.past
+*.test.sh
 +Errors
 git.log
