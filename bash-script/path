@@ -12,7 +12,7 @@ export bin=$(pwd)
 export mock=$bin/../mock
 cd $cwd
 
-dirs=$(find $dir -type d | sort)
+dirs=$(find $dir -type d | grep -v '/\.git' | sort)
 for d in $dirs; do
 	cd $d
 	minpaths=$minpaths:$(pwd)

@@ -1,3 +1,4 @@
+.
 .git/info/exclude
 /dis/Aide
 Dump /github/pfsh/dump
@@ -7,16 +8,16 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Restore the line in testsh which actually runs the test.'
+git commit -a -m 'Parse new “testsh wrap” and “testsh log” commands from test cases, to reduce the size of the pastout incantation.  Rename “MUTED” command to“testsh mute”.'
 git config --get remote.origin.url
-nsh git diff 5e4e218 bdd5e60
 git fetch
 git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git log --decorate --graph --oneline --all | sed 10q
-git push origin master
+if {host pfsh regress} {echo git push origin master}
 git rebase origin/master
 log git
 ls -F | mc
 nsh git diff
+nsh git diff 5e4e218 bdd5e60
 web http://github.com/catenate/pfsh
 |tr A-Z a-z

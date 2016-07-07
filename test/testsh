@@ -6,16 +6,21 @@ if test "$1" = "-p"; then
 	shift
 fi
 
-subdir=$1
-if ! test -d $subdir; then
-	mkdir $subdir
-fi
-cd $subdir
-shift
-
 test=$1
 shift
 testname=$(echo $test | sed 's \.test  ')
+
+log=$(grep '^testsh log ' $test | sed 's,^testsh log ,,')
+wrap=$(grep '^testsh wrap ' $test | sed 's,^testsh wrap ,,')
+
+if test -z "$log"; then
+	log=log
+fi
+if ! test -d $log; then
+	mkdir $log
+fi
+cd $log
+shift
 
 sed -n 's,^	> ,,p' ../$test >$test.sh
 
@@ -26,7 +31,7 @@ if test "$past" = "1"; then
 fi
 
 #echo "##teamcity[testStarted name='$testname' captureStandardOutput='true']"
-sh $test.sh >$test.out 2>&1
+$wrap sh $test.sh >$test.out 2>&1
 rv=$?
 
 if test $rv -ne 0; then
@@ -35,7 +40,7 @@ if test $rv -ne 0; then
 	if test "$pastout_schedule" != "parallel"; then
 		#echo "##teamcity[testIgnored name='$testname' message='run in parallel, trying again in series']"
 	#else
-		if grep '^MUTED$' ../$test; then
+		if grep '^testsh mute$' ../$test; then
 			rv=0
 			#echo "##teamcity[testIgnored name='$testname' message='test case muted']"
 		#else
@@ -43,7 +48,7 @@ if test $rv -ne 0; then
 		fi
 	fi
 
-	echo "$(basename $0): error $rv in $pastout_schedule $subdir/$test.out"
+	echo "$(basename $0): error $rv in $pastout_schedule $log/$test.out"
 fi
 
 if test "$past" = "1"; then

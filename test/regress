@@ -2,4 +2,4 @@ set -eu
 
 topdir=$(pwd)
 testdirs=$(maps dirname $(find . -type f -name '*.test') | sed 's ^\./  ' | sort | uniq)
-mape "cd $topdir/\$x; pastout log" $testdirs
+mape "cd $topdir/\$x; pastout" $testdirs
