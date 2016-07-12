@@ -8,11 +8,15 @@ fi
 
 cwd=$(pwd)
 cd $dir
-export bin=$(pwd)
-export mock=$bin/../mock
+export pfsh=$(pwd)
 cd $cwd
 
-dirs=$(find $dir -type d | grep -v '/\.git' | sort)
+if test -r $dir/path.dir; then
+	dirs="$(echo $(sed s,^,$dir/, $dir/path.dir))"
+else
+	dirs=$(find $dir -type d | sort | grep -v '/\.git' | grep -v '/mock')
+fi
+
 for d in $dirs; do
 	cd $d
 	minpaths=$minpaths:$(pwd)

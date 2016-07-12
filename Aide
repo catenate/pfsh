@@ -9,7 +9,7 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Correct test cases to not fail.'
+git commit -a -m 'Set $pfsh in pfsh as the bash-script directory.'
 git config --get remote.origin.url
 git diff
 git fetch
@@ -23,3 +23,5 @@ nsh git diff
 nsh git diff 5e4e218 bdd5e60
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
+host pfsh env | grep PATH
+ 
