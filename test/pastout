@@ -12,6 +12,8 @@ if test "$#" != "0"; then
 	fi
 fi
 
+export testdir=$(pwd)
+
 case $# in
 	0)
 		tests="$(ls *.test)"
