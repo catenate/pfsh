@@ -1,0 +1,33 @@
+.\" wm/man -f /github/pfsh/bash-script/man/man1/mapp.1
+.TH MAPP 1
+.SH NAME
+mapp \- supply values to a set of parallel commands
+.SH SYNOPSIS
+mapp $command ($value)*
+.SH DESCRIPTION
+.I Mapp
+executes
+.I command
+once for each
+.IR value ,
+appending
+.I value
+to
+.I command
+as its last parameter.
+.I Mapp
+executes all of these commands in parallel.
+.SH EXAMPLES
+Take about 10 seconds to execute these commands.
+.IP
+.EX
+time maps sleep 1 2 3 4
+.EE
+.TP
+Take about 4 seconds to execute these commands.
+.IP
+.EX
+time mapp sleep 1 2 3 4
+.EE
+.SH SOURCE
+.B /github/pfsh/bash-script/mapp

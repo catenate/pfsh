@@ -20,7 +20,7 @@ case $# in
 		;;
 	*)
 		tests="$@"
-		tests="$(echo $tests | fmt -w 1 | sed 's $ .test ')"
+		tests="$(echo $tests | fmt -w 1 | sed 's $ .test ;s \.test\.test$ .test ')"
 		;;
 esac
 

@@ -9,7 +9,7 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Set $pfsh in pfsh as the bash-script directory.'
+git commit -a -m 'Allow test names with .test, so users can just tab-complete a test name and press enter.  Add man pages for mape, mapp, and maps.  Add package script to create an rpm for pfsh.'
 git config --get remote.origin.url
 git diff
 git fetch

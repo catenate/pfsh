@@ -1,0 +1,25 @@
+.\" wm/man -f /github/pfsh/bash-script/man/man1/maps.1
+.TH MAPS 1
+.SH NAME
+maps \- apply a command to a series of values
+.SH SYNOPSIS
+maps $command ($value)*
+.SH DESCRIPTION
+.I Maps
+executes
+.I command
+once for each
+.IR value ,
+appending
+.I value
+to
+.I command
+as its last parameter.
+.SH EXAMPLE
+Print the numbers, one per line.
+.IP
+.EX
+maps echo 1 2 3 4
+.EE
+.SH SOURCE
+.B /github/pfsh/bash-script/maps

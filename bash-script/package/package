@@ -1,0 +1,35 @@
+set -eux
+self=$(basename $0)
+
+if ! which fpm; then
+	echo "$self: error: fpm not available" >&2
+	exit 1
+fi
+
+repodir=$(git rev-parse --show-toplevel)/bash-script
+package=pfsh-$(basename $repodir)
+pkgdir=${repodir}/package
+hash=$(git rev-parse --short HEAD)
+root=${repodir}/package/root
+
+version=$(cat $pkgdir/version)
+rev=$(expr $(echo $version | cut -d. -f3) + 1)
+version="$(echo $version | cut -d. -f1).$(echo $version | cut -d. -f2).$rev"
+echo $version >$pkgdir/version
+
+rpm=${package}-${version}-${hash}.x86_64.rpm
+
+rm -rf $repodir/package/root/*
+mkdir -p $root/usr/local/bin
+mkdir -p $root/usr/local/man/man1
+
+scripts=$(find $repodir -type f -perm /+x | grep -v '/\.git/' | grep -v '/bin/' | grep -v '/package/' | grep -v '/path$')
+cp -p $scripts $root/usr/local/bin
+
+man=$(find $repodir -type f -name *.1)
+cp -p $man $root/usr/local/man/man1
+
+rm -f $rpm
+fpm -s dir -C $root -t rpm -n $package -v ${version} --iteration ${hash} --description "$(cat $pkgdir/description)"
+
+jfrog rt u $rpm gitlab-rpm

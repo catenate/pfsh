@@ -1,0 +1,27 @@
+.\" wm/man -f /github/pfsh/bash-script/man/man1/mape.1
+.TH MAPE 1
+.SH NAME
+mape \- apply a variable command to a series of values
+.SH SYNOPSIS
+mape $command ($value)*
+.SH DESCRIPTION
+.I Mape
+evaluates
+.I command
+once for each
+.IR value ,
+substituting
+.I value
+for
+.B $x
+in
+.IR command .
+.SH EXAMPLE
+Print each number on its own line, and follow each numbered line
+with a blank line.
+.IP
+.EX
+mape 'echo $x; echo' 1 2 3 4
+.EE
+.SH SOURCE
+.B /github/pfsh/bash-script/mape

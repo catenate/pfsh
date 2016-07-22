@@ -1,0 +1,24 @@
+../version
+host rash pfsh pastout package
+log/package.test.out
+
+host sudo yum clean all
+host sudo yum clean metadata
+host sudo yum list --showduplicates rash
+
+	> set -eux
+
+	> repodir=$(git rev-parse --show-toplevel)/bash-script
+	> package=pfsh-$(basename $repodir)
+	> pkgdir=${repodir}/package
+	> hash=$(git rev-parse --short HEAD)
+
+	> version=$(cat $pkgdir/version)
+	> rev=$(expr $(echo $version | cut -d. -f3) + 1)
+	> version="$(echo $version | cut -d. -f1).$(echo $version | cut -d. -f2).$rev"
+	> rpm=${package}-${version}-${hash}.x86_64.rpm
+
+	> package 
+
+	> test -f $rpm
+	> rpm -qp -l $rpm
