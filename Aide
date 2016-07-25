@@ -9,14 +9,14 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Allow test names with .test, so users can just tab-complete a test name and press enter.  Add man pages for mape, mapp, and maps.  Add package script to create an rpm for pfsh.'
+git commit -a -m 'Update package version.'
 git config --get remote.origin.url
 git diff
 git fetch
 git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git log --decorate --graph --oneline --all | sed 10q
 git rebase origin/master
-if {host pfsh regress} {echo git push origin master}
+if {host rash pfsh regress} {echo git push origin master}
 log git
 ls -F | mc
 nsh git diff
@@ -24,4 +24,4 @@ nsh git diff 5e4e218 bdd5e60
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
 host pfsh env | grep PATH
- 
+host rash pfsh which jfrog
