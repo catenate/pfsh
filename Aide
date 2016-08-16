@@ -9,7 +9,7 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Update package version.'
+git commit -a -m 'Also deliver to yum repos for hosts chd-sv-jenkins01 and chd-ws-devops02.'
 git config --get remote.origin.url
 git diff
 git fetch

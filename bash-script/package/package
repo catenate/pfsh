@@ -33,3 +33,5 @@ rm -f $rpm
 fpm -s dir -C $root -t rpm -n $package -v ${version} --iteration ${hash} --description "$(cat $pkgdir/description)"
 
 jfrog rt u $rpm gitlab-rpm
+jfrog rt u $rpm chd-sv-jenkins01
+jfrog rt u $rpm chd-ws-devops02
