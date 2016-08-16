@@ -1,3 +1,4 @@
+self=$(basename $0)
 past=1
 rv=0
 
@@ -19,28 +20,29 @@ fi
 if ! test -d $log; then
 	mkdir $log
 fi
+cwd=$(pwd)
 cd $log
 shift
 
-sed -n 's,^	> ,,p' ../$test >$test.sh
+sed -n 's,^	> ,,p' ../${test} >${test}.sh
 
 if test "$past" = "1"; then
-	if test -e $test.out; then
-		mv $test.out $test.past
+	if test -e ${test}.out; then
+		mv ${test}.out ${test}.past
 	fi
 fi
 
 #echo "##teamcity[testStarted name='$testname' captureStandardOutput='true']"
-$wrap sh $test.sh >$test.out 2>&1
+$wrap sh ${test}.sh >${test}.out 2>&1
 rv=$?
 
 if test $rv -ne 0; then
-	cat $test.out
+	cat ${test}.out
 
 	if test "$pastout_schedule" != "parallel"; then
 		#echo "##teamcity[testIgnored name='$testname' message='run in parallel, trying again in series']"
 	#else
-		if grep '^testsh mute$' ../$test; then
+		if grep '^testsh mute$' ../${test}; then
 			rv=0
 			#echo "##teamcity[testIgnored name='$testname' message='test case muted']"
 		#else
@@ -48,11 +50,13 @@ if test $rv -ne 0; then
 		fi
 	fi
 
-	echo "$(basename $0): error $rv in $pastout_schedule $log/$test.out"
+	echo "$self: error $rv in $pastout_schedule ${log}/${test}.out"
+	echo "$self: test file ${cwd}/${test}"
+	echo "$self: log file ${cwd}/${log}/${test}.out"
 fi
 
 if test "$past" = "1"; then
-	if ! test -e $test.past; then touch $test.past; fi
+	if ! test -e ${test}.past; then touch ${test}.past; fi
 fi
 
 #echo "##teamcity[testFinished name='$testname']"
