@@ -9,13 +9,15 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Also deliver to yum repo for host chd-dev-core03.'
+git commit -a -m 'Use the current shell instead of sh.'
 git config --get remote.origin.url
 git diff
 git fetch
 git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git log --decorate --graph --oneline --all | sed 10q
 git rebase origin/master
+host pfsh env | grep PATH
+host rash pfsh which jfrog
 if {host rash pfsh regress} {echo git push origin master}
 log git
 ls -F | mc
@@ -23,5 +25,3 @@ nsh git diff
 nsh git diff 5e4e218 bdd5e60
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
-host pfsh env | grep PATH
-host rash pfsh which jfrog
