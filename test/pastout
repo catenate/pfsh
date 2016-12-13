@@ -13,6 +13,7 @@ if test "$#" != "0"; then
 fi
 
 export testdir=$(pwd)
+suite=$(basename $(dirname $testdir))
 
 case $# in
 	0)
@@ -24,7 +25,7 @@ case $# in
 		;;
 esac
 
-echo "$self: running tests in parallel: $(echo $tests | sed 's \.test  g')"
+echo "$self: running $suite tests in parallel: $(echo $tests | sed 's \.test  g')"
 #echo "##teamcity[testSuiteStarted name='$tctestname parallel']"
 export pastout_schedule=parallel
 mapp "testsh $p" $tests | tee $tmp
@@ -35,7 +36,7 @@ if test -z "$failures"; then
 	exit 0
 fi
 
-echo "$self: rerunning failed tests in series: $(echo $failures | sed 's \.test  g')"
+echo "$self: rerunning $suite failed tests in series: $(echo $failures | sed 's \.test  g')"
 #echo "##teamcity[testSuiteStarted name='$tctestname series']"
 export pastout_schedule=serial
 maps "testsh $p" $failures

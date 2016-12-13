@@ -1,6 +1,8 @@
 .
 .git/info/exclude
 /dis/Aide
+/github/pfsh/bash-script/package/package
+/github/pfsh/bash-script/package/test/package.test
 Dump /github/pfsh/dump
 Edit ,|sort|uniq
 dos evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
@@ -9,7 +11,7 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Use the current shell instead of sh.'
+git commit -a -m 'Add “here” to put here documents inside scripts.  Testsh now prints the name of the suite of tests it’s running.'
 git config --get remote.origin.url
 git diff
 git fetch
