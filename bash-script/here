@@ -1,0 +1,21 @@
+set -eu
+self=$(basename $0)
+tmp=/tmp/$self.$$
+trap 'rm -rf ${tmp}*' EXIT
+usage="usage: $self \$file"
+
+file=$1
+shift
+
+heres=$(grep '^here ' $file | awk '{print $2}')
+
+for h in $heres; do
+	cat - >${tmp}.sed <<EOF_sed
+/^here $h\$/c\\
+cat - >$h <<EOF_$h\\
+$(cat $h | sed 's $ \\ ')
+EOF_$h
+EOF_sed
+	sed -f ${tmp}.sed $file >$tmp
+	mv $tmp $file
+done

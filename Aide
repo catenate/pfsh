@@ -11,7 +11,7 @@ du -n | grep -v '\.git' | grep map
 du -n | grep Aide
 git
 git add --all .
-git commit -a -m 'Add “here” to put here documents inside scripts.  Testsh now prints the name of the suite of tests it’s running.'
+git commit -a -m 'Actually add “here”.'
 git config --get remote.origin.url
 git diff
 git fetch

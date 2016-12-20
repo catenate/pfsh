@@ -32,7 +32,7 @@ cp -p $man $root/usr/local/man/man1
 rm -f $rpm
 fpm -s dir -C $root -t rpm -n $package -v ${version} --iteration ${hash} --description "$(cat $pkgdir/description)"
 
-repos="gitlab-rpm chd-dev-core01 chd-dev-core03 chd-sv-jenkins01 chd-ws-devops02"
+repos="gitlab-rpm chd-dev-core01 chd-dev-core03 chd-sv-jenkins01 chd-dev-jenkins02 chd-ws-devops02"
 mape "jfrog rt u $rpm \$x" $repos
 mapp "repo-recalc repoadmin repoadmin" $repos
 
