@@ -1,0 +1,2 @@
+export PATH=$(eval echo \${OLDPATH_${1}_${2}})
+unset OLDPATH_${1}_${2}

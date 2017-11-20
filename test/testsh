@@ -10,6 +10,7 @@ fi
 test=$1
 shift
 testname=$(echo $test | sed 's \.test  ')
+export testdir=$(pwd)
 
 log=$(grep '^testsh log ' $test | sed 's,^testsh log ,,')
 wrap=$(grep '^testsh wrap ' $test | sed 's,^testsh wrap ,,')

@@ -9,11 +9,13 @@ dos evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
 du -n | grep '\.test$'
 du -n | grep -v '\.git' | grep map
 du -n | grep Aide
+du -n | grep mock
 git
 git add --all .
-git commit -a -m 'Actually add “here”.'
+git commit -a -m 'Add simple scripts to mock and unmock via PATH.  These versions should be nested, since they work by saving and restoring the current PATH, rather than by parsing and editing PATH.'
 git config --get remote.origin.url
 git diff
+git diff --staged
 git fetch
 git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git log --decorate --graph --oneline --all | sed 10q
@@ -27,3 +29,4 @@ nsh git diff
 nsh git diff 5e4e218 bdd5e60
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
+git grep mock
