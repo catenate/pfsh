@@ -1,2 +1,2 @@
-export PATH=$(eval echo \${OLDPATH_${1}_${2}})
-unset OLDPATH_${1}_${2}
+export PATH=$(echo $PATH | sed 's,:, ,g' | fmt -w 1 | grep -v "^$(eval echo \$RMPATH_${1}_${2})\$" | tr '\n' : | sed 's :$  ')
+unset RMPATH_${1}_${2}

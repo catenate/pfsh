@@ -1,2 +1,2 @@
-export OLDPATH_${1}_${2}=$PATH
-export PATH=${testdir}/mock/${1}/${2}:$PATH
+export RMPATH_${1}_${2}=${testdir}/mock/${1}/${2}
+export PATH=${testdir}/mock/${1}/${2}:${PATH}

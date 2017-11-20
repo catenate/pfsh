@@ -12,7 +12,7 @@ du -n | grep Aide
 du -n | grep mock
 git
 git add --all .
-git commit -a -m 'Add simple scripts to mock and unmock via PATH.  These versions should be nested, since they work by saving and restoring the current PATH, rather than by parsing and editing PATH.'
+git commit -a -m 'Update mock and unmock to save the path to remove, and search the entire PATH variable for the path to remove.  Unmock also removes an empty PATH entry at the end of the variable, so if this turns out to be a problem, this commit introduced that behavior.'
 git config --get remote.origin.url
 git diff
 git diff --staged
@@ -20,6 +20,7 @@ git fetch
 git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git log --decorate --graph --oneline --all | sed 10q
 git rebase origin/master
+git push origin master
 host pfsh env | grep PATH
 host rash pfsh which jfrog
 if {host rash pfsh regress} {echo git push origin master}
