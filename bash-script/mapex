@@ -1,12 +1,12 @@
 #nb serial maps bash script
 rv=0
 
-f=$1
+f="$1"
 shift
 export x
 
 for x in "$@"; do
-	eval $f
+	eval "$f"
 	rv=$(expr $rv + $?)
 done
 
