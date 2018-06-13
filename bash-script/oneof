@@ -1,10 +1,6 @@
-pattern=$1
+set -eu
+
+want=$1
 shift
 
-for p in $@; do
-	if test "$pattern" = "$p"; then
-		exit 0
-	fi
-done
-
-exit 1
+echo "$@" | fmt -w 1 | grep -w "$want"

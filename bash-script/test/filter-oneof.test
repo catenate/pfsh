@@ -1,0 +1,15 @@
+	> set -eux
+
+	> if filter-oneof; then exit 1; fi
+
+	> if filter-oneof a; then exit 1; fi
+
+	> if filter-oneof a b; then exit 1; fi
+
+	> filter-oneof a a
+
+	> filter-oneof a a b
+
+	> filter-oneof a b a
+
+
