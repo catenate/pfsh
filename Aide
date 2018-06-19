@@ -13,7 +13,7 @@ du -n | grep Aide
 du -n | grep mock
 git
 git add --all .
-git commit -a -m 'Rename looping oneof to filter-oneof.  New oneof is for use in filters.'
+git commit -a -m 'Add a test command to “cache” output if the command has already been run.'
 git config --get remote.origin.url
 git diff
 git diff --staged
@@ -33,3 +33,5 @@ nsh git diff
 nsh git diff 5e4e218 bdd5e60
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
+host deploy cache ls
+nsh host deploy cache -d ls

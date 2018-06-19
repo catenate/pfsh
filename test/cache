@@ -1,0 +1,77 @@
+set -eu
+self=$(basename $0)
+selfdir=$(dirname $0)
+tmp=/tmp/$self.$$
+trap 'rm -rf ${tmp}*' EXIT
+
+clear=false
+cwd=
+verbose=false
+
+while getopts "cde:v" opt; do
+	case $opt in
+		c)
+			clear=true
+			;;
+		d)
+			pwd >>$tmp
+			;;
+		e)
+			echo "${OPTARG}=$(eval echo \$$OPTARG)" >>$tmp
+			;;
+		v)
+			verbose=true
+			;;
+		\?)
+			echo "usage: $self (-c)? (-d)? (-e $VAR)* (-v)? $command ($parameter)*" >&2
+			echo "	c: clear command’s cache (do not run command)." >&2
+			echo "	d: consider current working directory (eg, when caching ls)." >&2
+			echo "	e $VAR: consider name and value of shell environment variable $VAR." >&2
+			echo "	v: print cached command, and whether printing or generating." >&2
+			exit 1
+			;;
+		:)
+			echo "Option -$OPTARG requires an argument." >&2
+			exit 2
+			;;
+	esac
+done
+
+shift $((OPTIND-1))
+
+if ! test -d ${selfdir}/caches; then
+	mkdir -p ${selfdir}/caches
+fi
+
+if test $# -eq 0; then
+	find ${selfdir}/caches -type f
+	exit 0
+fi
+
+echo "$@" >>$tmp
+
+hash=$(md5sum $tmp | awk '{print $1}')
+cache="${selfdir}/caches/${hash}"
+
+if $clear; then
+	rm -f ${cache}.0 ${cache}.1
+	exit 0
+fi
+
+mv $tmp ${cache}.0
+
+if $verbose; then
+	grep -n . ${cache}.0 /dev/null >&2
+fi
+
+if test -r "${cache}.1"; then
+	if $verbose; then
+		echo "$self: Printing ${cache}.1" >&2
+	fi
+	cat ${cache}.1
+else
+	if $verbose; then
+		echo "$self: Generating ${cache}.1" >&2
+	fi
+	"$@" | tee ${cache}.1
+fi
