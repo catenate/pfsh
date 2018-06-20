@@ -31,7 +31,7 @@ while getopts "cde:v" opt; do
 			exit 1
 			;;
 		:)
-			echo "Option -$OPTARG requires an argument." >&2
+			echo "$self: error: Option -$OPTARG requires an argument." >&2
 			exit 2
 			;;
 	esac

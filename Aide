@@ -13,7 +13,7 @@ du -n | grep Aide
 du -n | grep mock
 git
 git add --all .
-git commit -a -m 'Add a test command to “cache” output if the command has already been run.'
+git commit -a -m 'More complete error message for missing parameter.'
 git config --get remote.origin.url
 git diff
 git diff --staged
@@ -24,6 +24,7 @@ git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git log --decorate --graph --oneline --all | sed 10q
 git push origin master
 git rebase origin/master
+host deploy cache ls
 host pfsh env | grep PATH
 host rash pfsh which jfrog
 if {host rash pfsh regress} {echo git push origin master}
@@ -31,7 +32,6 @@ log git
 ls -F | mc
 nsh git diff
 nsh git diff 5e4e218 bdd5e60
+nsh host deploy cache -d ls
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
-host deploy cache ls
-nsh host deploy cache -d ls
