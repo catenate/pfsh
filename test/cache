@@ -23,10 +23,10 @@ while getopts "cde:v" opt; do
 			verbose=true
 			;;
 		\?)
-			echo "usage: $self (-c)? (-d)? (-e $VAR)* (-v)? $command ($parameter)*" >&2
+			echo "usage: $self (-c)? (-d)? (-e \$VAR)* (-v)? \$command (\$parameter)*" >&2
 			echo "	c: clear command’s cache (do not run command)." >&2
 			echo "	d: consider current working directory (eg, when caching ls)." >&2
-			echo "	e $VAR: consider name and value of shell environment variable $VAR." >&2
+			echo "	e \$VAR: consider name and value of a shell environment variable." >&2
 			echo "	v: print cached command, and whether printing or generating." >&2
 			exit 1
 			;;
