@@ -1,0 +1,22 @@
+set -eu
+self=$(basename $0)
+
+interpreter=$1
+shift
+tag=$(echo $interpreter | awk '{print $1}')
+
+script=$1
+shift
+
+case $tag in
+	perl)
+		ext=pl
+		;;
+	*)
+		ext=$tag
+		;;
+esac
+
+sed -n "s,^	${tag}> ,,p" $script >${script}.${ext}
+
+$interpreter ${script}.${ext} "$@"

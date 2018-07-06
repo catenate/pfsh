@@ -2,7 +2,7 @@ set -eu
 self=$(basename $0)
 selfdir=$(dirname $0)
 tmp=/tmp/$self.$$
-trap 'rm -rf ${tmp}*' EXIT
+trap 'rm -rf ${tmp}*' EXIT HUP INT QUIT TERM
 
 clear=false
 cwd=
