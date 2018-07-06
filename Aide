@@ -13,7 +13,7 @@ du -n | grep Aide
 du -n | grep mock
 git
 git add --all .
-git commit -a -m 'More complete error message for missing parameter.'
+git commit -a -m 'Extract a field from each line of output.'
 git config --get remote.origin.url
 git diff
 git diff --staged

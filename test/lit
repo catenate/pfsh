@@ -3,7 +3,7 @@ self=$(basename $0)
 
 interpreter=$1
 shift
-tag=$(echo $interpreter | awk '{print $1}')
+tag=$(echo $interpreter | field 1)
 
 script=$1
 shift

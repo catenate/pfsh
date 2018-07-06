@@ -50,7 +50,7 @@ fi
 
 echo "$@" >>$tmp
 
-hash=$(md5sum $tmp | awk '{print $1}')
+hash=$(md5sum $tmp | field 1)
 cache="${selfdir}/caches/${hash}"
 
 if $clear; then
