@@ -4,11 +4,12 @@ selfdir=$(dirname $0)
 tmp=/tmp/$self.$$
 trap 'rm -rf ${tmp}*' EXIT HUP INT QUIT TERM
 
+cachedir=${selfdir}/caches
 clear=false
 cwd=
 verbose=false
 
-while getopts "cde:v" opt; do
+while getopts "cde:f:v" opt; do
 	case $opt in
 		c)
 			clear=true
@@ -19,14 +20,18 @@ while getopts "cde:v" opt; do
 		e)
 			echo "${OPTARG}=$(eval echo \$$OPTARG)" >>$tmp
 			;;
+		f)
+			cachedir=${OPTARG}
+			;;
 		v)
 			verbose=true
 			;;
 		\?)
-			echo "usage: $self (-c)? (-d)? (-e \$VAR)* (-v)? \$command (\$parameter)*" >&2
+			echo "usage: $self (-c)? (-d)? (-e \$VAR)* (-f \$dir)? (-v)? \$command (\$parameter)*" >&2
 			echo "	c: clear command’s cache (do not run command)." >&2
 			echo "	d: consider current working directory (eg, when caching ls)." >&2
 			echo "	e \$VAR: consider name and value of a shell environment variable." >&2
+			echo "	f \$dir: find caches only in this directory." >&2
 			echo "	v: print cached command, and whether printing or generating." >&2
 			exit 1
 			;;
@@ -39,19 +44,19 @@ done
 
 shift $((OPTIND-1))
 
-if ! test -d ${selfdir}/caches; then
-	mkdir -p ${selfdir}/caches
+if ! test -d $cachedir; then
+	mkdir -p $cachedir
 fi
 
 if test $# -eq 0; then
-	find ${selfdir}/caches -type f
+	find $cachedir -type f
 	exit 0
 fi
 
 echo "$@" >>$tmp
 
 hash=$(md5sum $tmp | field 1)
-cache="${selfdir}/caches/${hash}"
+cache="${cachedir}/${hash}"
 
 if $clear; then
 	rm -f ${cache}.0 ${cache}.1

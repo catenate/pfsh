@@ -1,0 +1,30 @@
+#nb gnu parallel mapp bash script
+optj=
+tmp=/tmp/mapp.$$
+seq=1000000
+
+if test "$1" = "-j"; then
+	optj="$1 $2"
+	shift
+	shift
+fi
+
+f=$1
+shift
+
+if test -z "$*"; then
+	cat - | parallel --no-notice $f
+	rv=$?
+else
+	for x in "$@"; do
+		seq=$(expr $seq + 1)
+		echo "export x=$x; $f" >${tmp}.${seq}
+	done
+
+	cat ${tmp}.* | parallel --gnu --no-notice $optj eval.sh
+	rv=$?
+
+	rm ${tmp}.*
+fi
+
+exit $rv
