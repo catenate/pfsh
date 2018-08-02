@@ -13,7 +13,7 @@ du -n | grep Aide
 du -n | grep mock
 git
 git add --all .
-git commit -a -m 'Update cache.  Add parallel map with eval of x.'
+git commit -a -m 'Update Aide.'
 git config --get remote.origin.url
 git diff
 git diff --staged
