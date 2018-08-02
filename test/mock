@@ -1,2 +1,12 @@
-export RMPATH_${1}_${2}=${testdir}/mock/${1}/${2}
-export PATH=${testdir}/mock/${1}/${2}:${PATH}
+set -eu
+
+tool=$1
+shift
+tool_us=$(echo $tool | sed 's - _ ')
+
+var=$1
+shift
+var_us=$(echo $var | sed 's - _ ')
+
+export RMPATH_${tool_us}_${var_us}=${testdir}/mock/${tool}/${var}
+export PATH=${testdir}/mock/${tool}/${var}:${PATH}

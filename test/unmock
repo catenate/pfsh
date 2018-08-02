@@ -1,2 +1,12 @@
-export PATH=$(echo $PATH | sed 's,:, ,g' | fmt -w 1 | grep -v "^$(eval echo \$RMPATH_${1}_${2})\$" | tr '\n' : | sed 's :$  ')
-unset RMPATH_${1}_${2}
+set -eu
+
+tool=$1
+shift
+tool_us=$(echo $tool | sed 's - _ ')
+
+var=$1
+shift
+var_us=$(echo $var | sed 's - _ ')
+
+export PATH=$(echo $PATH | sed 's,:, ,g' | fmt -w 1 | grep -v "^$(eval echo \$RMPATH_${tool_us}_${var_us})\$" | tr '\n' : | sed 's :$  ')
+unset RMPATH_${tool_us}_${var_us}

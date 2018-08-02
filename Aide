@@ -13,7 +13,7 @@ du -n | grep Aide
 du -n | grep mock
 git
 git add --all .
-git commit -a -m 'Extract a field from each line of output.'
+git commit -a -m 'Update cache.  Add parallel map with eval of x.'
 git config --get remote.origin.url
 git diff
 git diff --staged
@@ -35,3 +35,6 @@ nsh git diff 5e4e218 bdd5e60
 nsh host deploy cache -d ls
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
+usage: lit $interpreter $multiprogram
+The multiprogram file contains several interpreted scripts in one file.  Each line of each script is preceded by a tab, the basename of the interpreter, a greater-than symbol, and a space (eg "^\tsh> ").
+lit - extract script from a literate program
