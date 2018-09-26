@@ -18,6 +18,7 @@ suite=$(basename $(dirname $testdir))
 case $# in
 	0)
 		tests="$(ls *.test)"
+		tests=$(rejectex 'grep "^regress.* skip" $x' $tests)
 		;;
 	*)
 		tests="$@"

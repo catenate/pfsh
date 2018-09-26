@@ -1,5 +1,8 @@
 set -eu
+self=$(basename $0)
 
 topdir=$(pwd)
 testdirs=$(maps dirname $(find . -type f -name '*.test') | sed 's ^\./  ' | sort | uniq)
+echo "$self: running tests in: $(echo $testdirs | sed 's /test  g')"
 mape "cd $topdir/\$x; pastout" $testdirs
+echo "$self: complete"
