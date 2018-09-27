@@ -1,0 +1,26 @@
+set -eux
+self=$(basename $0)
+
+x=
+if test $# != 0; then
+	if test $1 = '-x'; then
+		x='-x'
+		shift
+	fi
+fi
+
+sedcmd="$1"
+shift
+
+script=$(which $1)
+shift
+scriptdir=$(dirname $script)
+if ! test -w $scriptdir; then
+	scriptdir=/tmp
+fi
+tmp=${scriptdir}/${self}.${$}
+trap 'rm -rf ${tmp}*' EXIT HUP INT QUIT TERM
+
+sed "$sedcmd" $script >$tmp
+
+sh $x $tmp "$@"
