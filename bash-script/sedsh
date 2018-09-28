@@ -9,7 +9,7 @@ if test $# != 0; then
 	fi
 fi
 
-sedcmd="$1"
+sedit=$(which $1)
 shift
 
 script=$(which $1)
@@ -21,6 +21,6 @@ fi
 tmp=${scriptdir}/${self}.${$}
 trap 'rm -rf ${tmp}*' EXIT HUP INT QUIT TERM
 
-sed "$sedcmd" $script >$tmp
+sed -f $sedit $script >$tmp
 
 sh $x $tmp "$@"
