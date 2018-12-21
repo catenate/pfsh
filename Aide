@@ -5,6 +5,7 @@
 /github/pfsh/bash-script/package/test/package.test
 Dump /github/pfsh/dump
 Edit ,|sort|uniq
+The multiprogram file contains several interpreted scripts in one file.  Each line of each script is preceded by a tab, the basename of the interpreter, a greater-than symbol, and a space (eg "^\tsh> ").
 apply {ls -l $1} `{git | grep -v '^#' | sed 's,.* ,,'}
 dos evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
 du -n | grep '\.test$'
@@ -13,6 +14,7 @@ du -n | grep Aide
 du -n | grep mock
 git
 git add --all .
+git commit -a -m 'Update Aide.'
 git commit -a -m 'Vary a script by a sed command, and execute the script variant.'
 git config --get remote.origin.url
 git diff
@@ -20,21 +22,21 @@ git diff --staged
 git fetch
 git grep mock
 git grep oneof
-git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git log --decorate --graph --oneline --all -n 5
+git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git push origin master
 git rebase origin/master
+git show HEAD
 host deploy cache ls
 host pfsh env | grep PATH
 host rash pfsh which jfrog
 if {host rash pfsh regress} {echo git push origin master}
+lit - extract script from a literate program
 log git
 ls -F | mc
 nsh git diff
 nsh git diff 5e4e218 bdd5e60
 nsh host deploy cache -d ls
+usage: lit $interpreter $multiprogram
 web http://github.com/catenate/pfsh
 |tr A-Z a-z
-usage: lit $interpreter $multiprogram
-The multiprogram file contains several interpreted scripts in one file.  Each line of each script is preceded by a tab, the basename of the interpreter, a greater-than symbol, and a space (eg "^\tsh> ").
-lit - extract script from a literate program
