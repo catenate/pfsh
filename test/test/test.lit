@@ -1,0 +1,6 @@
+
+	sh> echo sh1
+	sh> echo sh2
+
+	/tmp/test-lit-file> first line
+	/tmp/test-lit-file> second line

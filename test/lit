@@ -9,14 +9,19 @@ script=$1
 shift
 
 case $tag in
+	/*)
+		sed -n "s,^	${tag}> ,,p" $script >${tag}
+		ls ${tag}
+		;;
 	perl)
 		ext=pl
+		sed -n "s,^	${tag}> ,,p" $script >${script}.${ext}
+		$interpreter ${script}.${ext} "$@"
 		;;
 	*)
 		ext=$tag
+		sed -n "s,^	${tag}> ,,p" $script >${script}.${ext}
+		$interpreter ${script}.${ext} "$@"
 		;;
 esac
 
-sed -n "s,^	${tag}> ,,p" $script >${script}.${ext}
-
-$interpreter ${script}.${ext} "$@"

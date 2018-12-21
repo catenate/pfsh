@@ -1,0 +1,23 @@
+host pfsh pastout lit
+tail -f log/lit.test.out
+
+host which pfsh
+host which pastout
+host pfsh which test
+host pfsh which pastout
+
+	> set -eux
+
+Extract and run a test script.
+
+	> test "$(echo $(lit sh ../test.lit))" = "sh1 sh2"
+
+Extract a file.
+
+	> rm -f /tmp/test-lit-file
+	> test "$(lit /tmp/test-lit-file ../test.lit)" = "/tmp/test-lit-file"
+	> cat /tmp/test-lit-file
+	> test "$( echo $(cat /tmp/test-lit-file))" = "first line second line"
+	> rm /tmp/test-lit-file
+
+	> echo done

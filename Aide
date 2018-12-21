@@ -15,14 +15,14 @@ du -n | grep mock
 git
 git add --all .
 git commit -a -m 'Update Aide.'
-git commit -a -m 'Vary a script by a sed command, and execute the script variant.'
+git commit -a -m 'Test extracting a file from lit source.'
 git config --get remote.origin.url
 git diff
 git diff --staged
 git fetch
 git grep mock
 git grep oneof
-git log --decorate --graph --oneline --all -n 5
+git log --decorate --oneline --graph --all -n 5
 git log --decorate --graph --oneline --all | sed '/origin\/master/q'
 git push origin master
 git rebase origin/master
