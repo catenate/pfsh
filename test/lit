@@ -10,6 +10,13 @@ shift
 
 case $tag in
 	/*)
+		path=$(dirname $tag)
+		file=$(basename $tag)
+
+		if ! test -d $path; then
+			mkdir -p $path
+		fi
+
 		sed -n "s,^	${tag}> ,,p" $script >${tag}
 		ls ${tag}
 		;;

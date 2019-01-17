@@ -1,42 +1,71 @@
-.
-.git/info/exclude
-/dis/Aide
-/github/pfsh/bash-script/package/package
-/github/pfsh/bash-script/package/test/package.test
-Dump /github/pfsh/dump
-Edit ,|sort|uniq
-The multiprogram file contains several interpreted scripts in one file.  Each line of each script is preceded by a tab, the basename of the interpreter, a greater-than symbol, and a space (eg "^\tsh> ").
-apply {ls -l $1} `{git | grep -v '^#' | sed 's,.* ,,'}
-dos evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
-du -n | grep '\.test$'
-du -n | grep -v '\.git' | grep map
-du -n | grep Aide
-du -n | grep mock
-git
-git add --all .
-git commit -a -m 'Update Aide.'
-git commit -a -m 'Test extracting a file from lit source.'
-git config --get remote.origin.url
-git diff
-git diff --staged
-git fetch
-git grep mock
-git grep oneof
-git log --decorate --oneline --graph --all -n 5
-git log --decorate --graph --oneline --all | sed '/origin\/master/q'
-git push origin master
-git rebase origin/master
-git show HEAD
-host deploy cache ls
-host pfsh env | grep PATH
-host rash pfsh which jfrog
-if {host rash pfsh regress} {echo git push origin master}
-lit - extract script from a literate program
-log git
-ls -F | mc
-nsh git diff
-nsh git diff 5e4e218 bdd5e60
-nsh host deploy cache -d ls
-usage: lit $interpreter $multiprogram
-web http://github.com/catenate/pfsh
-|tr A-Z a-z
+change:
+	git
+	git add --all .
+	git diff
+	git diff --staged
+	nsh git diff
+
+commit:
+	git commit -a -m 'Add wrapper script pfsh to find bash scripts.  Lit makes path to extracted file if it doesn’t already exist.  Reorganize Aide into makefile.'
+	git commit -a -m 'Update Aide.'
+
+config:
+	git config --get remote.origin.url
+
+dump:
+	Dump /github/pfsh/dump
+
+edit:
+	|sort|uniq
+	|tr A-Z a-z
+
+file:
+	/dis/Aide
+	/github/pfsh/bash-script/package/package
+	/github/pfsh/bash-script/package/test/package.test
+	cp -x pfsh /n/local/home/jason/bin
+
+history:
+	git log --decorate --graph --oneline --all | sed '/origin\/master/q'
+	git log --decorate --oneline --graph --all -n 5
+	git show HEAD
+	log git
+	nsh git diff 5e4e218 bdd5e60
+
+host:
+	host deploy cache ls
+	host pfsh env | grep PATH
+	host pfsh which pmapex
+	host rash pfsh which jfrog
+	if {host rash pfsh regress} {echo git push origin master}
+	nsh host deploy cache -d ls
+
+ignore:
+	.git/info/exclude
+
+man:
+	The multiprogram file contains several interpreted scripts in one file.  Each line of each script is preceded by a tab, the basename of the interpreter, a greater-than symbol, and a space (eg "^\tsh> ").
+	lit - extract script from a literate program
+	usage: lit $interpreter $multiprogram
+
+origin:
+	git fetch
+	git push origin master
+	git rebase origin/master
+
+search:
+	apply {ls -l $1} `{git | grep -v '^#' | sed 's,.* ,,'}
+	ls -F | mc
+	ls -l
+	du -n | grep '\.test$'
+	du -n | grep -v '\.git' | grep map
+	du -n | grep Aide
+	du -n | grep mock
+	git grep mock
+	git grep oneof
+
+view:
+	dos evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
+
+web:
+	web http://github.com/catenate/pfsh
