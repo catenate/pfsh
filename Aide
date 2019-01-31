@@ -12,8 +12,12 @@ change:
 	nsh git diff
 
 commit:
+	git log --decorate --graph --oneline --all | sed '/origin\/master/q'
+	git log --decorate --oneline --graph --all -n 5
+	git show HEAD
 	log github git commit -a -m 'Add wrapper script pfsh to find bash scripts, and update Aide with remote-creation commands.'
 	log github git commit -a -m 'Update Aide.'
+	nsh git diff 5e4e218 bdd5e60
 
 config:
 	git config --get remote.origin.url
@@ -32,11 +36,7 @@ file:
 	cp -x pfsh /n/local/home/jason/bin
 
 history:
-	git log --decorate --graph --oneline --all | sed '/origin\/master/q'
-	git log --decorate --oneline --graph --all -n 5
-	git show HEAD
-	log git
-	nsh git diff 5e4e218 bdd5e60
+	log github
 
 host:
 	host deploy cache ls
@@ -45,9 +45,6 @@ host:
 	host rash pfsh which jfrog
 	if {host rash pfsh regress} {echo git push origin master}
 	nsh host deploy cache -d ls
-
-ignore:
-	.git/info/exclude
 
 man:
 	The multiprogram file contains several interpreted scripts in one file.  Each line of each script is preceded by a tab, the basename of the interpreter, a greater-than symbol, and a space (eg "^\tsh> ").
@@ -59,7 +56,8 @@ remote:
 	log github git push c master
 	git rebase origin/master
 
-remote_setup:
+repo:
+	.git/info/exclude
 	git remote
 	git remote add c catenate:catenate/pfsh.git
 	git remote show c
