@@ -1,3 +1,9 @@
+acme:
+	Edit X/pfsh/D
+
+aide:
+	grep -n ':$' Aide /dev/null | sed 's,: , ,g;s,:$, ,g' | fmt
+
 change:
 	git
 	git add --all .
@@ -6,8 +12,8 @@ change:
 	nsh git diff
 
 commit:
-	git commit -a -m 'Add wrapper script pfsh to find bash scripts, and update Aide with remote-creation commands.'
-	git commit -a -m 'Update Aide.'
+	log github git commit -a -m 'Add wrapper script pfsh to find bash scripts, and update Aide with remote-creation commands.'
+	log github git commit -a -m 'Update Aide.'
 
 config:
 	git config --get remote.origin.url
@@ -50,7 +56,7 @@ man:
 
 remote:
 	git fetch --all
-	git push c master
+	log github git push c master
 	git rebase origin/master
 
 remote_setup:
