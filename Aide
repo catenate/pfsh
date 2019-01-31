@@ -6,7 +6,7 @@ change:
 	nsh git diff
 
 commit:
-	git commit -a -m 'Add wrapper script pfsh to find bash scripts.  Lit makes path to extracted file if it doesn’t already exist.  Reorganize Aide into makefile.'
+	git commit -a -m 'Add wrapper script pfsh to find bash scripts, and update Aide with remote-creation commands.'
 	git commit -a -m 'Update Aide.'
 
 config:
@@ -48,10 +48,15 @@ man:
 	lit - extract script from a literate program
 	usage: lit $interpreter $multiprogram
 
-origin:
-	git fetch
-	git push origin master
+remote:
+	git fetch --all
+	git push c master
 	git rebase origin/master
+
+remote_setup:
+	git remote
+	git remote add c catenate:catenate/pfsh.git
+	git remote show c
 
 search:
 	apply {ls -l $1} `{git | grep -v '^#' | sed 's,.* ,,'}
