@@ -1,33 +1,19 @@
-acme:
-	Edit X/pfsh/D
+# /lib/aide
+|aide edit sort
 
-aide:
-	grep -n ':$' Aide /dev/null | sed 's,: , ,g;s,:$, ,g' | fmt
-
-change:
-	git
-	git add --all .
-	git diff
-	git diff --staged
-	nsh git diff
-
+|aide git change
+|aide git commit
 commit:
-	git log --decorate --graph --oneline --all | sed '/origin\/master/q'
-	git log --decorate --oneline --graph --all -n 5
 	git show HEAD
-	log github git commit -a -m 'Add wrapper script pfsh to find bash scripts, and update Aide with remote-creation commands.'
+	log github git commit -a -m 'Retry with truncated binary exponential backoff.  Add syntactic sugar for shall (parallelize with no job limit) and not (invert return code success/fail).'
 	log github git commit -a -m 'Update Aide.'
-	nsh git diff 5e4e218 bdd5e60
 
-config:
-	git config --get remote.origin.url
+|aide git push
+|aide git remote
 
-dump:
-	Dump /github/pfsh/dump
-
-edit:
-	|sort|uniq
-	|tr A-Z a-z
+|aide inferno acme pfsh
+|aide inferno aide
+|aide inferno dump pfsh
 
 file:
 	/dis/Aide
@@ -50,17 +36,6 @@ man:
 	The multiprogram file contains several interpreted scripts in one file.  Each line of each script is preceded by a tab, the basename of the interpreter, a greater-than symbol, and a space (eg "^\tsh> ").
 	lit - extract script from a literate program
 	usage: lit $interpreter $multiprogram
-
-remote:
-	git fetch --all
-	log github git push c master
-	git rebase origin/master
-
-repo:
-	.git/info/exclude
-	git remote
-	git remote add c catenate:catenate/pfsh.git
-	git remote show c
 
 search:
 	apply {ls -l $1} `{git | grep -v '^#' | sed 's,.* ,,'}

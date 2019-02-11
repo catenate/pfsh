@@ -1,4 +1,4 @@
-set -ux
+set -u
 
 retries=$1
 shift

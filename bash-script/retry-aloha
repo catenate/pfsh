@@ -1,0 +1,21 @@
+set -fu
+
+limit=$1
+shift
+
+seconds=1
+sum=0
+rv=1
+
+while test $sum -lt $limit && test $rv -ne 0; do
+	"$@"
+	rv=$?
+
+	if test $sum -lt $limit && test $rv -ne 0; then
+		sleep $seconds
+		sum=$(expr $sum + $seconds)
+		seconds=$(expr $seconds * 2)
+	fi
+done
+
+exit $rv

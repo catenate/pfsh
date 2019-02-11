@@ -1,0 +1,12 @@
+set -fu
+
+"$@"
+rv=$?
+
+if test $rv -eq 0; then
+	rv=1
+else
+	rv=0
+fi
+
+exit $rv
