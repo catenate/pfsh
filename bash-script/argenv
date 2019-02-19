@@ -1,0 +1,13 @@
+for arg in "$@"; do
+	if echo "$arg" | grep '=' >/dev/null 2>&1; then
+		arg_name=$(echo $arg | sed 's =.*  ')
+		arg_value=$(echo $arg | sed 's ^[^=]*=  ')
+		eval ${arg_name}='${arg_value}'
+		shift
+	fi
+done
+
+set_opt=${set_opt-}
+if test -n "$set_opt"; then
+	set $set_opt
+fi

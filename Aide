@@ -1,16 +1,13 @@
 # /lib/aide
 |aide edit sort
-
 |aide git change
 |aide git commit
-commit:
-	git show HEAD
-	log github git commit -a -m 'Retry with truncated binary exponential backoff.  Add syntactic sugar for shall (parallelize with no job limit) and not (invert return code success/fail).'
-	log github git commit -a -m 'Update Aide.'
+git show HEAD
+log github git commit -a -m 'Parse multi-word arguments.'
+log github git commit -a -m 'Update Aide.'
 
 |aide git push
 |aide git remote
-
 |aide inferno acme pfsh
 |aide inferno aide
 |aide inferno dump pfsh
