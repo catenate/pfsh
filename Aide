@@ -2,10 +2,6 @@
 |aide edit sort
 |aide git change
 |aide git commit
-git show HEAD
-log github git commit -a -m 'Parse multi-word arguments.'
-log github git commit -a -m 'Update Aide.'
-
 |aide git push
 |aide git remote
 |aide inferno acme pfsh

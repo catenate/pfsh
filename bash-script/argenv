@@ -4,6 +4,8 @@ for arg in "$@"; do
 		arg_value=$(echo $arg | sed 's ^[^=]*=  ')
 		eval ${arg_name}='${arg_value}'
 		shift
+	else
+		break
 	fi
 done
 
