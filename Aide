@@ -1,4 +1,3 @@
-# /lib/aide
 |aide edit sort
 |aide git change
 |aide git commit
@@ -7,42 +6,3 @@
 |aide inferno acme pfsh
 |aide inferno aide
 |aide inferno dump pfsh
-
-file:
-	/dis/Aide
-	/github/pfsh/bash-script/package/package
-	/github/pfsh/bash-script/package/test/package.test
-	cp -x pfsh /n/local/home/jason/bin
-
-history:
-	log github
-
-host:
-	host deploy cache ls
-	host pfsh env | grep PATH
-	host pfsh which pmapex
-	host rash pfsh which jfrog
-	if {host rash pfsh regress} {echo git push origin master}
-	nsh host deploy cache -d ls
-
-man:
-	The multiprogram file contains several interpreted scripts in one file.  Each line of each script is preceded by a tab, the basename of the interpreter, a greater-than symbol, and a space (eg "^\tsh> ").
-	lit - extract script from a literate program
-	usage: lit $interpreter $multiprogram
-
-search:
-	apply {ls -l $1} `{git | grep -v '^#' | sed 's,.* ,,'}
-	ls -F | mc
-	ls -l
-	du -n | grep '\.test$'
-	du -n | grep -v '\.git' | grep map
-	du -n | grep Aide
-	du -n | grep mock
-	git grep mock
-	git grep oneof
-
-view:
-	dos evince /home/jcatena/Dropbox/wabe2/wabe-funsh.pdf
-
-web:
-	web http://github.com/catenate/pfsh
