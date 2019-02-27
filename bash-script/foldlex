@@ -1,0 +1,20 @@
+#nb serial foldl bash script
+
+. argenv
+
+f=$1
+shift
+
+rv=0
+export x
+
+export z=$1
+shift
+
+for x in "$@"; do
+	z=$(eval $f)
+	rv=$(expr $rv + $?)
+done
+
+echo $z
+exit $rv

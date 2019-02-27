@@ -9,7 +9,7 @@ for arg in "$@"; do
 	fi
 done
 
-set_opt=${set_opt-}
-if test -n "$set_opt"; then
-	set $set_opt
+set=${set-}
+if test -n "$set"; then
+	set $set
 fi
