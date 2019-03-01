@@ -3,6 +3,7 @@ set -o pipefail
 
 . argenv
 
+limit=${limit:-0}
 seconds=1
 sum=0
 rv=1
