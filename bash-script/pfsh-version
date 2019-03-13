@@ -1,0 +1,20 @@
+set -efu
+set -o pipefail
+
+. argenv
+
+# MAJOR version for incompatible API changes
+# MINOR version for new, backwards-compatible functionality
+# PATCH version for backwards-compatible bug fixes
+
+major=0
+minor=0
+patch=1
+
+version=${version:-}
+
+if test -n "$version"; then
+	eval echo "\${$version}"
+else
+	echo "${major}.${minor}.${patch}"
+fi

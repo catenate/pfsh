@@ -11,6 +11,12 @@ for arg in "$@"; do
 	fi
 done
 
+if test $# -gt 0; then
+	if test "$1" = "--"; then
+		shift
+	fi
+fi
+
 set=${set-}
 if test -n "$set"; then
 	set $set
