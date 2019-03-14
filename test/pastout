@@ -33,7 +33,7 @@ mapp "testsh $p" $tests | tee $tmp
 failures=$(grep '^testsh: error' $tmp | sed 's .*/  ;s \.out$  ' | sort | uniq)
 rm -f $tmp
 #echo "##teamcity[testSuiteFinished name='$tctestname parallel']"
-if test -z "$failures"; then
+if test -z "$failures" -o $(echo $tests | wc -w) -lt 2; then
 	exit 0
 fi
 

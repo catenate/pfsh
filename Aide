@@ -1,7 +1,23 @@
 |aide edit sort
 |aide git change
+git
+git add --all .
+git diff
+git diff --staged
+git | grep -v '^#' | cicd field 2
+nsh git diff
+nsh git diff --staged
+
 |aide git commit
+git show HEAD
+git commit -a -m 'pfsh 0.0.2: Don’t rerun one failing test in series.'
+git commit -a -m 'Update Aide.'
+
 |aide git push
+git fetch --all
+git rebase c/master
+git push c master
+
 |aide git remote
 |aide inferno acme pfsh
 |aide inferno aide
