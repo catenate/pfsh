@@ -14,7 +14,7 @@ cd $cwd
 if test -r $dir/path.dir; then
 	dirs="$(echo $(sed s,^,$dir/, $dir/path.dir))"
 else
-	dirs=$(find $dir -type d | sort | grep -v '/\.git' | grep -v '/mock')
+	dirs=$(find $dir -type d | sort | grep -v '/\.git' | grep -v '/mock' | grep -v '/man' | grep -v '/log')
 fi
 
 for d in $dirs; do

@@ -10,7 +10,7 @@ nsh git diff --staged
 
 |aide git commit
 git show HEAD
-git commit -a -m 'pfsh 0.0.2: Don’t rerun one failing test in series.'
+git commit -a -m 'pfsh 0.0.3: Clean up for runs in other environments.'
 git commit -a -m 'Update Aide.'
 
 |aide git push

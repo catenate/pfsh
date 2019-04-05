@@ -1,6 +1,8 @@
 set -fu
 set -o pipefail
 
+self=$(basename $0)
+
 . argenv
 
 limit=${limit:-0}
@@ -22,5 +24,7 @@ while test $sum -le $limit -a $rv -ne 0; do
 		seconds=$(expr $seconds * 2)
 	fi
 done
+
+echo "$self: sleep $seconds" >&2 
 
 exit $rv
