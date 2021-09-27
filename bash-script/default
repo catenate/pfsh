@@ -1,0 +1,6 @@
+var=$1
+shift
+
+eval $var=\${$var:-$*}
+
+log log=$self echo "$var=$(eval echo \$$var)"

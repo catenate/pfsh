@@ -1,24 +1,8 @@
-|aide edit sort
-|aide git change
-git
-git add --all .
-git diff
-git diff --staged
-git | grep -v '^#' | cicd field 2
-nsh git diff
-nsh git diff --staged
-
-|aide git commit
-git show HEAD
-git commit -a -m 'pfsh 0.0.3: Clean up for runs in other environments.'
-git commit -a -m 'Update Aide.'
-
-|aide git push
-git fetch --all
-git rebase c/master
-git push c master
-
-|aide git remote
-|aide inferno acme pfsh
-|aide inferno aide
-|aide inferno dump pfsh
+	|aide edit sort
+	|aide git change
+	|aide git commit
+	|aide git push origin
+	|aide git remote
+	|aide inferno acme pfsh
+	|aide inferno aide
+	|aide inferno dump pfsh

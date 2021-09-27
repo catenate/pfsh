@@ -1,0 +1,19 @@
+if test "$(pwd)" != "$selfdir" -a -x ${self}.def; then
+	. ${self}.def
+fi
+
+if test -x ${selfdir}/../user/${self}.def; then
+	. ${selfdir}/../user/${self}.def
+fi
+
+if test -x ${selfdir}/${self}.def; then
+	. ${selfdir}/${self}.def
+fi
+
+if test -x ${selfdir}/../user/.def; then
+	. ${selfdir}/../user/.def
+fi
+
+if test -x ${selfdir}/.def; then
+	. ${selfdir}/.def
+fi

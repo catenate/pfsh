@@ -1,0 +1,27 @@
+set -eu
+set -o pipefail
+
+selfdir=$(dirname $0)
+export self=$(basename $0 | sed 's \.sh$  ')
+
+tmp=/tmp/$self.$$
+trap 'rm -rf ${tmp}*' EXIT HUP INT QUIT TERM
+
+. argenv
+
+. default test false
+. option echo
+if $test; then
+	echo=echo
+fi
+
+. default describe false
+if $describe; then
+	. option description
+	if test -n "$description"; then
+		echo "$description"
+	fi
+	exit 0
+fi
+
+. def
